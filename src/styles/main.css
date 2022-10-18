@@ -1,0 +1,44 @@
+* , *::before , *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+}
+
+#root {
+    background-color: rgb(167, 134, 167);
+}
+
+.main-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.navbar-container {
+    background-color: rgb(89, 89, 149);
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    min-height: fit-content;
+    width: 100%;
+}
+
+.link-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.navbar-link-item {
+    color: white;
+    margin: 0px 10px 0px 10px;
+    font-weight: bold;
+    font-size: x-large;
+    text-decoration: none;
+    padding: 40px 40px 40px 40px;
+    white-space: nowrap;
+    border-radius: 13px;
+  }

@@ -4,6 +4,17 @@ export default function Route({path , children, component}) {
 
     const [currentPath, setCurrentPath] = useState(window.location.pathname)
 
+
+    // truncate URL path in case of params
+    for (let i = 0; i < currentPath.length; i++) {
+
+        if (currentPath.charAt(i) == '?') {
+            setCurrentPath( currentPath.substring(0,i) )
+            break
+        }
+    }
+    console.log(currentPath)
+
     useEffect(() => {
 
         const onLocationChange = () => {
