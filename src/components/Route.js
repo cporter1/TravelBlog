@@ -13,7 +13,6 @@ export default function Route({path , children, component}) {
             break
         }
     }
-    console.log(currentPath)
 
     useEffect(() => {
 

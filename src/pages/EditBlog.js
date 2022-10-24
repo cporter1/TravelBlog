@@ -1,7 +1,11 @@
+import Link from "../components/Link"
+
 
 export default function EditBlog() {
 
     return (
-        <div>Edit Blog</div>
+        <div>
+            <Link href='/createpost' className='navbar-link-item'>Create Post</Link>
+        </div>
     )
 }

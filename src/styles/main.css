@@ -17,6 +17,14 @@ body {
     width: 100vw;
 }
 
+
+.content-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Navbar CSS */
+
 .navbar-container {
     background-color: rgb(89, 89, 149);
     display: flex;
@@ -41,4 +49,16 @@ body {
     padding: 40px 40px 40px 40px;
     white-space: nowrap;
     border-radius: 13px;
+  }
+
+
+  /* My blogs page CSS */
+
+  .new-blog-button {
+    padding: 30px;
+  }
+
+  .uploaded-images {
+    display: block;
+    width: 50%;
   }
