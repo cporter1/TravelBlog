@@ -1,14 +1,21 @@
+import Post from "../models/Post"
 
-export default function CreateSection({addImage}) {
+export default function CreateSection({setPostArray, postArray}) {
 
-
+    const post = new Post()
 
     return (
-        <div> 
+        <div className="create-section-container"> 
             <input type='file' accept="image/*"
-                onChange={ event => addImage(event.target.files[0]) } 
+                onChange={ event => 
+                    post.addImage(event.target.files[0] , setPostArray , postArray) } 
             />
-            <button>Add Textbox</button>
+            <button className="add-text-button"
+                onClick={event => {
+                    post.addTextbox(setPostArray, postArray)
+                }}>
+                Add Textbox
+            </button>
         </div>
     )
 }
