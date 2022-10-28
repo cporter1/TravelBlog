@@ -90,3 +90,7 @@ body {
     display: flex;
     flex-direction: column;
   }
+
+  .delete-section-button {
+    padding: 10px;
+  }

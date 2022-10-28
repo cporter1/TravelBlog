@@ -3,7 +3,7 @@ import Link from "./Link"
 export default function Navbar() {
 
     function isSignedIn() {
-        return false;
+        return true;
     }
     if(isSignedIn()) {
         return (

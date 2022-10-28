@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React, {useState } from "react"
 import CreateSection from "../components/CreateSection";
-import Post from "../models/Post";
 
 export default function CreatePost() {
 
 
     const [postArray, setPostArray]   = useState([]);
     const [postTitle, setPostTitle]   = useState('');
-    const [isUploading, setIsLoading] = useState(false);
 
     function handleTextChange(event , index) {
         let newArray = [...postArray]
@@ -17,13 +15,21 @@ export default function CreatePost() {
         setPostArray(newArray)
     }
 
+    function deleteSection(index) {
+
+        let newArray = [...postArray]
+        newArray.splice(index , 1)
+        setPostArray(newArray)
+    }
+
     function mapArray(element , index) {
 
         if(element.type === 'image') {
             return (
                 <section className="post-section">
-                    <img className="uploaded-images" src={element.url} key={index} />
+                    <img className="uploaded-images" src={element.url} key={index} alt='hi' />
                     <input className="image-caption" onChange={(event => {handleTextChange(event , index) } )}/>
+                    <button className="delete-section-button" onClick={ e => {deleteSection(index)} }>Delete</button>
                 </section>
             )
         }
@@ -31,6 +37,7 @@ export default function CreatePost() {
             return (
                 <section className="post-section">
                     <textarea onChange={(event) => {handleTextChange(event , index)}}/>
+                    <button className="delete-section-button" onClick={event => {deleteSection(index)}}>Delete</button>
                 </section>
             )
         }
