@@ -1,5 +1,6 @@
 import React, {useState } from "react"
 import CreateSection from "../components/CreateSection";
+import SavePost from "../components/SavePost";
 
 export default function CreatePost() {
 
@@ -55,6 +56,7 @@ export default function CreatePost() {
                 </div>
 
                 <CreateSection postArray={postArray} setPostArray={setPostArray}/>
+                <SavePost postArray={postArray}/>
             </div>
         </div>
     )

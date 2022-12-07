@@ -8,21 +8,26 @@ import MyBlogs   from './pages/MyBlogs'
 import EditBlogs from './pages/EditBlog'
 import CreateBlog from "./pages/CreateBlog";
 import CreatePost from "./pages/CreatePost";
+import SignIn from "./pages/SignIn";
 
 import './styles/main.css'
+import  UserContextProvider  from './models/UserContext'
 
 function App() {
   return (
-    <div className='main-container'>
-      <Navbar />
-      <Route path='/'              component = {<Home      />} />
-      <Route path='/blogs'         component = {<AllBlogs  />} />
-      <Route path='/myaccount'     component = {<MyAccount />} />
-      <Route path='/myblogs'       component = {<MyBlogs   />} />
-      <Route path='/editblog'      component = {<EditBlogs />} />
-      <Route path='/createblog'    component = {<CreateBlog/>} />
-      <Route path='/createpost'    component = {<CreatePost/>} />
-    </div>
+    <UserContextProvider>
+      <div className='main-container'>
+        <Navbar />
+        <Route path='/'              component = {<Home      />} />
+        <Route path='/blogs'         component = {<AllBlogs  />} />
+        <Route path='/myaccount'     component = {<MyAccount />} />
+        <Route path='/myblogs'       component = {<MyBlogs   />} />
+        <Route path='/editblog'      component = {<EditBlogs />} />
+        <Route path='/createblog'    component = {<CreateBlog/>} />
+        <Route path='/createpost'    component = {<CreatePost/>} />
+        <Route path='/signin'        component = {<SignIn/>} />
+      </div>
+    </UserContextProvider>
   );
 }
 

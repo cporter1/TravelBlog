@@ -1,4 +1,3 @@
-
 export default function Post() {
 
     this.addTextbox = function(stateFunction , array) {
