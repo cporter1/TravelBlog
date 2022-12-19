@@ -17,7 +17,8 @@ export default function Navbar() {
                 <section className="link-container">
                     <Link href='/myaccount' className='navbar-link-item'>My Account</Link>
                     <Link href='/myblogs' className='navbar-link-item'  >My Blogs</Link>
-                    <button onClick={() => {setContextEmail(null)}}>Log Out</button>
+                    <button className='navbar-link-item' 
+                        onClick={() => {setContextEmail(null)}}>Log Out</button>
                 </section>
             </ul>
         ) : (

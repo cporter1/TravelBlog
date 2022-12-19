@@ -1,13 +1,11 @@
 import axios from './axios-config.js'
-import {useUserContext} from '../models/UserContext'
-
 
 async function savePostFormData(formData , option) {
     await axios.post('/posts/savepostarray' , formData ,
         { headers: {'Content-Type': 'multipart/form-data'}})
 }
 
-async function logIn(email , password , setContextEmail) {
+async function logIn(email , password , setContextEmail , setAccountRole) {
 
     const data = {
         email: email,
@@ -18,11 +16,12 @@ async function logIn(email , password , setContextEmail) {
         .then( result => {
 
             if(result.status === 200) {
+                console.log(result.data)
                 setContextEmail(email)
+                setAccountRole(result.data[0].role)
                 window.history.pushState({} , '' , '/')
                 const navEvent = new PopStateEvent('popstate');
                 window.dispatchEvent(navEvent);
-                console.log('result')
             }
         })
         .catch(error => {
@@ -30,4 +29,20 @@ async function logIn(email , password , setContextEmail) {
         })
 }
 
-export {savePostFormData , logIn}
+async function getAllBlogs() {
+
+    return (
+        axios.get('/posts/allblogs')
+        .then( async result => {
+            return result.data
+        })
+        .catch(error => {
+
+        })
+    )
+}
+
+export {savePostFormData, 
+        logIn,
+        getAllBlogs
+       }

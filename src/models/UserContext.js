@@ -7,11 +7,13 @@ export function useUserContext() {
 }
 
 export default function UserContext({ children }) {
-    const [username , SetContextUsername] = useState('')
+    const [username , setContextUsername] = useState('')
     const [email , setContextEmail] = useState('')
+    const [accRole , setAccountRole] = useState('')
 
     return (
-        <AppContext.Provider value={{username , email , SetContextUsername , setContextEmail}}>
+        <AppContext.Provider value={{username , email , accRole ,
+            setContextUsername , setContextEmail , setAccountRole}}>
                 {children}
         </AppContext.Provider>
     )

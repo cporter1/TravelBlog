@@ -9,6 +9,7 @@ import EditBlogs from './pages/EditBlog'
 import CreateBlog from "./pages/CreateBlog";
 import CreatePost from "./pages/CreatePost";
 import SignIn from "./pages/SignIn";
+import BlogView from "./pages/BlogView";
 
 import './styles/main.css'
 import  UserContextProvider  from './models/UserContext'
@@ -26,6 +27,7 @@ function App() {
         <Route path='/createblog'    component = {<CreateBlog/>} />
         <Route path='/createpost'    component = {<CreatePost/>} />
         <Route path='/signin'        component = {<SignIn/>} />
+        <Route path='/blogs/'        component = {<BlogView/>} />
       </div>
     </UserContextProvider>
   );

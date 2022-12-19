@@ -7,7 +7,7 @@ export default function SignIn() {
     const [email , setEmail]       = useState('')
     const [password , setPassword] = useState('')
 
-    const { setContextEmail } = useUserContext()
+    const { setContextEmail , setAccountRole } = useUserContext()
 
     return (
         <div className="login-container">
@@ -18,7 +18,7 @@ export default function SignIn() {
             <input onChange={(e) => { setPassword(e.target.value)}}/>
 
             <button className='delete-section-button' onClick={ () => { 
-                logIn(email , password ,setContextEmail) }}/>
+                logIn(email , password , setContextEmail , setAccountRole) }}/>
         </div>
     )
 }
