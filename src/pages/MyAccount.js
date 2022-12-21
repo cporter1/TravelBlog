@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import Link from "../components/Link"
 import { useUserContext } from "../models/UserContext"
 
@@ -7,16 +6,17 @@ export default function MyAccount() {
     const {email, username , accRole} = useUserContext()
 
 
-    function AccountInfo({username}) {
-        console.log(username)
-        // return (
-        //     <ul>
-        //         <li>
-        //             <label>Username:</label>
-        //             {username}
-        //         </li>
-        //     </ul>
-        // )
+    function AccountInfo({username , email}) {
+        return (
+            <ul>
+                <li>
+                    <label>Username: {username}</label>
+                </li>
+                <li>
+                    <label>email: {email}</label>
+                </li>
+            </ul>
+        )
     }
 
     if(accRole === 'admin') {
@@ -26,7 +26,7 @@ export default function MyAccount() {
                     <Link href='/createaccount' className='navbar-link-item'>Create Account</Link>
                 </ul>
                 <ul>
-                    <AccountInfo username={username} ></AccountInfo>
+                    <AccountInfo username={username} email={email}/>
                 </ul>
             </div>
         )
@@ -35,7 +35,7 @@ export default function MyAccount() {
         return (
             <div>
                 <ul>
-                    <Link href='/createaccount' className='navbar-link-item'>Create Account</Link>
+                <AccountInfo username={username} email={email}/>
                 </ul>
             </div>
         )

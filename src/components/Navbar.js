@@ -1,9 +1,10 @@
 import Link from "./Link"
 import { useUserContext } from "../models/UserContext"
+import { removeSession } from "../models/UserContext"
 
 export default function Navbar() {
 
-    const { username , email , setContextEmail } = useUserContext()
+    const { email , setContext } = useUserContext()
 
     return (
         <div>
@@ -17,8 +18,9 @@ export default function Navbar() {
                 <section className="link-container">
                     <Link href='/myaccount' className='navbar-link-item'>My Account</Link>
                     <Link href='/myblogs' className='navbar-link-item'  >My Blogs</Link>
-                    <button className='navbar-link-item' 
-                        onClick={() => {setContextEmail(null)}}>Log Out</button>
+                    <div className='navbar-link-item' 
+                        onClick={() => {removeSession();
+                            setContext(null , null , null)}}>Log Out</div>
                 </section>
             </ul>
         ) : (
