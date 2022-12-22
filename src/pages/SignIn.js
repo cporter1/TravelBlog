@@ -16,10 +16,10 @@ export default function SignIn() {
             <input ref={emailRef}/>
 
             <label>Password:</label>
-            <input ref={passwordRef}/>
+            <input type='password' ref={passwordRef}/>
 
             <button className='delete-section-button' onClick={ () => { 
-                logIn(emailRef.current.value , passwordRef.current.value , setContext) }}/>
+                logIn(emailRef.current.value , passwordRef.current.value , setContext) }}>Log In </button>
         </div>
     )
 }

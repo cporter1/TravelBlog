@@ -35,7 +35,7 @@ export default function MyAccount() {
         return (
             <div>
                 <ul>
-                <AccountInfo username={username} email={email}/>
+                    <AccountInfo username={username} email={email}/>
                 </ul>
             </div>
         )
