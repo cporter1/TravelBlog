@@ -1,11 +1,6 @@
+import { goTo } from "../models/Navigation"
 
 export default function BlogBanner({author , lastUpdate , title, id}) {
-
-    function goTo(dest) {
-        window.history.pushState({} , '' , dest)
-        const navEvent = new PopStateEvent('popstate');
-        window.dispatchEvent(navEvent);
-    }
 
     return (
         <section onClick={ () => { goTo(`/blogs/?${id}`) }}>

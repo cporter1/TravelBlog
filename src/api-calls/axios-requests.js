@@ -60,6 +60,18 @@ async function getMyBlogs(username) {
     )
 }
 
+async function getPostsByBlogID(blogID) {
+    return (
+        axios.get('/posts/postsbyblogid', {
+            params: {id: blogID}
+        })
+            .then(async result => {
+                return result.data
+            })
+            .catch(error => {})
+    )
+}
+
 async function getAllBlogsAndPosts() {
     return (
         axios.get('/posts/allblogs')
@@ -73,6 +85,7 @@ async function getAllBlogsAndPosts() {
 export {savePostFormData, 
         logIn,
         createAccount,
+        getPostsByBlogID,
         getAllBlogsAndPosts,
         createBlog,
         getMyBlogs

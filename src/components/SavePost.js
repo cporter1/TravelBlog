@@ -17,7 +17,7 @@ export default function SavePost({postArray}) {
             }
         })
         
-        savePostFormData(formData , 'create')
+        savePostFormData(formData)
     }
 
     return (

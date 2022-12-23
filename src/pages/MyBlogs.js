@@ -20,13 +20,6 @@ export default function MyBlogs() {
 
     return (
         <div className="content-container">
-            <button>
-                <Link href='/createblog' className="new-blog-button">New Blog</Link>
-            </button>
-            <button>
-                <Link href='/createpost' className="new-blog-button">Create Post</Link>
-            </button>
-
             {blogArray.map((element , index) => {
                 return (
                     <BlogBanner title={element.title} author={element.author} 
