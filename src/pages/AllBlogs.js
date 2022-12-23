@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { getAllBlogs } from "../api-calls/axios-requests"
+import { getAllBlogsAndPosts } from "../api-calls/axios-requests"
 import BlogBanner from "../components/BlogBanner";
+import { parseBlogsFromPosts } from "../models/ParseBlog";
 
 export default function AllBlogs() {
 
@@ -8,16 +9,10 @@ export default function AllBlogs() {
     const [blogArray , setBlogArray] = useState([]);
 
     useEffect( () => {
-        getAllBlogs()
+        getAllBlogsAndPosts()
             .then(async result => {
                 if(result != null) {
-
-                    let i = 0
-                    while(result[i] !== 'posts') {
-                        i++;
-                    }
-                    const blogs = result.splice(1 , i-1)
-                    setBlogArray(blogs)
+                    setBlogArray(parseBlogsFromPosts(result)[0])
                 }
             })
     },[])

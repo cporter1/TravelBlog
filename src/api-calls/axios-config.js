@@ -3,7 +3,7 @@ import axios from 'axios'
 const app = axios.create({
     withCredentials: true,
     baseURL:
-        'http://192.168.1.66:8080'
+        process.env.REACT_APP_API_URL
 })
 
 export default app;
