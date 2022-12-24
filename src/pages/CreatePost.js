@@ -1,6 +1,7 @@
 import React, {useState } from "react"
 import CreateSection from "../components/CreateSection";
 import SavePost from "../components/SavePost";
+import { getIDfromParams } from "../models/URLparams";
 
 export default function CreatePost() {
 
@@ -56,7 +57,7 @@ export default function CreatePost() {
                 </div>
 
                 <CreateSection postArray={postArray} setPostArray={setPostArray}/>
-                <SavePost postArray={postArray}/>
+                <SavePost postArray={postArray} id={getIDfromParams()}/>
             </div>
         </div>
     )
