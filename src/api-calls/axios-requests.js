@@ -1,8 +1,9 @@
 import axios from './axios-config.js'
 import { logInContext } from "../models/UserContext"
 
-async function savePostFormData(formData) {
-    await axios.post('/posts/savepostarray' , formData ,
+async function savePostFormData(formData , postID) {
+    formData.append('postID' , postID)
+    await axios.post('/posts/updatepostarray' , formData ,
         { headers: {'Content-Type': 'multipart/form-data'}})
 }
 
@@ -48,6 +49,20 @@ async function createBlog(title , author) {
     
 }
 
+async function createPost(author, blogID, postArray, title) {
+    const data = {
+        author: author,
+        blogID: blogID,
+        title: title
+    }
+
+    await axios.post('/posts/createpost' , data)
+        .then(async (result) => { 
+            savePostFormData(postArray, result.data[0].id); })
+        .catch(error => {console.error(error)})
+
+}
+
 async function getMyBlogs(username) {
     return (
         axios.get('/posts/blogsbyauthor' , {
@@ -66,7 +81,7 @@ async function getPostsByBlogID(blogID) {
             params: {id: blogID}
         })
             .then(async result => {
-                return result.data
+                return result.data.rows
             })
             .catch(error => {})
     )
@@ -85,6 +100,7 @@ async function getAllBlogsAndPosts() {
 export {savePostFormData, 
         logIn,
         createAccount,
+        createPost,
         getPostsByBlogID,
         getAllBlogsAndPosts,
         createBlog,

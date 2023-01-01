@@ -8,8 +8,8 @@ export default function CreateSection({setPostArray, postArray}) {
         <div className="create-section-container"> 
             <input type='file' accept="image/*"
                 onChange={ event => 
-                    post.addImage(event.target.files[0] , 
-                        setPostArray , postArray) } 
+                    post.addImage(event.target.files[0], 
+                        setPostArray, postArray) } 
             />
             <button className="add-text-button"
                 onClick={event => {

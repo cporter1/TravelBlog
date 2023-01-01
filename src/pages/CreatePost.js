@@ -28,18 +28,21 @@ export default function CreatePost() {
 
         if(element.type === 'image') {
             return (
-                <section className="post-section">
+                <section className="post-section" key={index}>
                     <img className="uploaded-images" src={element.url} key={index} alt='hi' />
-                    <input className="image-caption" onChange={(event => {handleTextChange(event , index) } )}/>
-                    <button className="delete-section-button" onClick={ e => {deleteSection(index)} }>Delete</button>
+                    <input className="image-caption" 
+                        onChange={(event => {handleTextChange(event , index) } )}/>
+                    <button className="delete-section-button" 
+                        onClick={ e => {deleteSection(index)} }>Delete</button>
                 </section>
             )
         }
         else if(element.type === 'text') {
             return (
-                <section className="post-section">
+                <section className="post-section" key={index}>
                     <textarea onChange={(event) => {handleTextChange(event , index)}}/>
-                    <button className="delete-section-button" onClick={event => {deleteSection(index)}}>Delete</button>
+                    <button className="delete-section-button" 
+                        onClick={event => {deleteSection(index)}}>Delete</button>
                 </section>
             )
         }
@@ -57,7 +60,8 @@ export default function CreatePost() {
                 </div>
 
                 <CreateSection postArray={postArray} setPostArray={setPostArray}/>
-                <SavePost postArray={postArray} id={getIDfromParams()}/>
+                <SavePost postArray={postArray} blogID={getIDfromParams()} 
+                    title={postTitle}/>
             </div>
         </div>
     )

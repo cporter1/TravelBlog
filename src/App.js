@@ -28,7 +28,7 @@ function App() {
         <Route path='/myblogs'       component = {<MyBlogs   />} />
         <Route path='/editblog'      component = {<EditBlogs />} />
         <Route path='/createblog'    component = {<CreateBlog/>} />
-        <Route path='/createpost'    component = {<CreatePost/>} />
+        <Route path='/createpost/'    component = {<CreatePost/>} />
         <Route path='/signin'        component = {<SignIn/>} />
         <Route path='/blogs/'        component = {<BlogView/>} />
         <Route path='/createaccount' component = {<CreateAccount/>} />
