@@ -1,5 +1,6 @@
 import axios from './axios-config.js'
 import { logInContext } from "../models/UserContext"
+import { goTo } from '../models/Navigation.js'
 
 async function savePostFormData(formData , postID) {
     formData.append('postID' , postID)
@@ -17,10 +18,8 @@ async function logIn(email , password , setContext) {
             if(result.status === 200) {
                 logInContext(email , result.data[0].username , result.data[0].role)
                 setContext(email , result.data[0].username , result.data[0].role)
-
-                window.history.pushState({} , '' , '/')
-                const navEvent = new PopStateEvent('popstate');
-                window.dispatchEvent(navEvent);
+                
+                goTo('/')
             }
         })
         .catch(error => {})
@@ -81,7 +80,7 @@ async function getPostsByBlogID(blogID) {
             params: {id: blogID}
         })
             .then(async result => {
-                return result.data.rows
+                return result.data
             })
             .catch(error => {})
     )

@@ -9,19 +9,17 @@ export default function SavePost({postArray , blogID , title}) {
 
 
     function pushPostArray() {
-        console.log(postArray)
-        
         const post = new Post()
         createPost(username , blogID , post.encodePostArray(postArray) , title)
 
-        goTo(`/blogs/?${blogID}`)
+        // TODO: go to loading page
+        setTimeout( () => goTo(`/blogs/?${blogID}`) , 5000)
     }
-
-
 
     return (
         <div>
-            <button disabled={!(title && postArray[0]) } onClick={ () => { pushPostArray() }}>
+            <button disabled={ !(title && postArray[0]) } 
+                onClick={ () => { pushPostArray() } } >
                 Save Post
             </button>
         </div>

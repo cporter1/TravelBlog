@@ -10,6 +10,8 @@ export default function SignIn() {
 
     const { setContext } = useUserContext()
 
+    // TODO: put navigation logic on button press here
+
     return (
         <div className="login-container">
             <label>Email:</label>
