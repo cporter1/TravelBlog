@@ -14,7 +14,7 @@ export default function EditPost() {
     useEffect(() => {
         getPostByPostID(getIDfromParams())
             .then(async result => {
-                // console.log('result', result)
+                console.log('result', result)
                 if(result) {
                     // setPost(result)
                     setBodyArray(result.body_array)

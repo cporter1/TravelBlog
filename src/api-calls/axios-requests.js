@@ -74,6 +74,18 @@ async function getMyBlogs(username) {
     )
 }
 
+async function getBlogByBlogID(blogID) {
+    return (
+        axios.get('/posts/blogbyblogid' , {
+            params: {blogID: blogID}
+        })
+            .then(async result => {
+                return result.data[0]
+            })
+            .catch(error => console.error(error))
+    )
+}
+
 async function getPostsByBlogID(blogID) {
     return (
         axios.get('/posts/postsbyblogid', {
@@ -108,6 +120,19 @@ async function getAllBlogsAndPosts() {
     )
 }
 
+async function saveBlogTravelDates(dates , blogID) {
+    const data = {travelDates : dates , blogID : blogID}
+        axios.post('/posts/saveblogtraveldates' , data)
+            .catch(err => console.error(err))
+
+}
+
+async function saveBlogTitle(title , blogID) {
+    const data = { title: title , blogID: blogID }
+        axios.post('/posts/saveblogtitle' , data)
+            .catch(err => console.error(err))
+}
+
 export {savePostFormData, 
         logIn,
         createAccount,
@@ -116,5 +141,8 @@ export {savePostFormData,
         getAllBlogsAndPosts,
         createBlog,
         getPostByPostID,
-        getMyBlogs
+        getMyBlogs,
+        getBlogByBlogID,
+        saveBlogTravelDates,
+        saveBlogTitle
        }
