@@ -14,25 +14,32 @@ export default function BlogView() {
         getPostsByBlogID(getIDfromParams())
             .then(async result => {
                 if(result) setPostsArray(result);
+                // console.log(result)
             })
     },[])
+
+    // take in postID & index =>
+    // 
+    async function editPost(postID) {
+        goTo(`/editpost/?${postID}`)
+    }
 
 
     function postMap(element , index) {
         return (
-            <section key={index}>
+            <section key={element.id}>
                 <div>{element.title} </div>
                 <div>{dateHandler(element.time_posted)}</div>
-                <div>
-                    {element.body_array?.map(postSectionMap)}
-                </div>
-                <br/>
+                <div>{element.body_array?.map(bodyMap)}</div>
+
+                <button onClick={() => editPost(element.id)}>Edit Post</button>
+                <br/><br/>
             </section>
         )
 
     }
 
-    function postSectionMap(element , index) {
+    function bodyMap(element , index) {
         if(element['type'] === 'text') { // textbox section
             return (
                 <section key={index}>
@@ -43,7 +50,8 @@ export default function BlogView() {
             return (
                 <section key={index}>
                     <img alt='' className="uploaded-images"
-                        src={`data:image/;base64, ${encode(element.file.Body.data)}`}/>
+                        src={`data:image/jpeg;base64, ${encode(element.file.Body.data)}`}/>
+                        <div>{element.text}</div>
                 </section>
             )
         } else {console.error('function postSectionMap: invalid array')}
@@ -53,7 +61,7 @@ export default function BlogView() {
         <div>
             <button onClick={()=>{goTo(`/createpost/?${getIDfromParams()}`)}}>
                 Create Post</button>
-
+            <br/><br/>
             <section>
                 {postsArray?.map(postMap)}
             </section>

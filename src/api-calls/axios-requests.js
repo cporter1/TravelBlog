@@ -82,7 +82,19 @@ async function getPostsByBlogID(blogID) {
             .then(async result => {
                 return result.data
             })
-            .catch(error => {})
+            .catch(error => {console.error(error)})
+    )
+}
+
+async function getPostByPostID(postID) {
+    return (
+        axios.get('/posts/postbypostid', {
+            params: {postID : postID}
+        })
+            .then(async result => {
+                return result.data[0]
+            })
+            .catch(error => console.error(error))
     )
 }
 
@@ -103,5 +115,6 @@ export {savePostFormData,
         getPostsByBlogID,
         getAllBlogsAndPosts,
         createBlog,
+        getPostByPostID,
         getMyBlogs
        }

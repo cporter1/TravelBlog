@@ -11,10 +11,11 @@ import CreatePost from "./pages/CreatePost";
 import SignIn from "./pages/SignIn";
 import BlogView from "./pages/BlogView";
 import CreateAccount from "./pages/CreateAccount";
+import EditPost from "./pages/EditPost.js";
 
 import './styles/main.css'
 
-import  UserContextProvider  from './models/UserContext'
+import UserContextProvider from './models/UserContext'
 
 
 function App() {
@@ -28,10 +29,11 @@ function App() {
         <Route path='/myblogs'       component = {<MyBlogs   />} />
         <Route path='/editblog'      component = {<EditBlogs />} />
         <Route path='/createblog'    component = {<CreateBlog/>} />
-        <Route path='/createpost/'    component = {<CreatePost/>} />
-        <Route path='/signin'        component = {<SignIn/>} />
-        <Route path='/blogs/'        component = {<BlogView/>} />
+        <Route path='/createpost/'   component = {<CreatePost/>} />
+        <Route path='/signin'        component = {<SignIn/>}     />
+        <Route path='/blogs/'        component = {<BlogView/>}   />
         <Route path='/createaccount' component = {<CreateAccount/>} />
+        <Route path='/editpost/'      component = {<EditPost/>}   />
       </div>
     </UserContextProvider>
   );

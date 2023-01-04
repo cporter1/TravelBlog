@@ -1,4 +1,4 @@
-import React, {useState } from "react"
+import React, {useRef, useState } from "react"
 import CreateSection from "../components/CreateSection";
 import SavePost from "../components/SavePost";
 import { getIDfromParams } from "../models/URLparams";
@@ -6,8 +6,8 @@ import { getIDfromParams } from "../models/URLparams";
 export default function CreatePost() {
 
 
-    const [postArray, setPostArray]   = useState([]);
-    const [postTitle, setPostTitle]   = useState('');
+    const [postArray, setPostArray] = useState([]);
+    const postTitle                 = useRef('') 
 
     function handleTextChange(event , index) {
         let newArray = [...postArray]
@@ -53,15 +53,15 @@ export default function CreatePost() {
             <div className="post-content">
                 <h1 className="post-title">Post Title:</h1>
                 <input className="input-post-title" 
-                    onChange={event => {setPostTitle(event.target.value)}} /> 
+                    ref={postTitle} /> 
 
                 <div className="section-container">
                     {postArray.map(mapArray)}
                 </div>
 
                 <CreateSection postArray={postArray} setPostArray={setPostArray}/>
-                <SavePost postArray={postArray} blogID={getIDfromParams()} 
-                    title={postTitle}/>
+                <SavePost state={'new'} bodyArray={postArray} blogID={getIDfromParams()} 
+                    title={postTitle?.current.value}/>
             </div>
         </div>
     )
