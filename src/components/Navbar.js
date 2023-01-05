@@ -19,8 +19,8 @@ export default function Navbar() {
                     <Link href='/myaccount' className='navbar-link-item'>My Account</Link>
                     <Link href='/myblogs' className='navbar-link-item'  >My Blogs</Link>
                     <div className='navbar-link-item' 
-                        onClick={() => {removeSession();
-                            setContext(null , null , null)}}>Log Out</div>
+                        onClick={() => {removeSession(); setContext(null , null , null);
+                            window.location.reload(true)}}>Log Out</div>
                 </section>
             </ul>
         ) : (

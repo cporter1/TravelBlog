@@ -48,8 +48,9 @@ async function createBlog(title , author) {
     
 }
 
-async function createPost(author, blogID, postArray, title) {
+async function createPost(author, blogID, postArray, title, publish) {
     const data = {
+        publish: publish,
         author: author,
         blogID: blogID,
         title: title
@@ -122,15 +123,27 @@ async function getAllBlogsAndPosts() {
 
 async function saveBlogTravelDates(dates , blogID) {
     const data = {travelDates : dates , blogID : blogID}
-        axios.post('/posts/saveblogtraveldates' , data)
-            .catch(err => console.error(err))
+    axios.post('/posts/saveblogtraveldates' , data)
+        .catch(err => console.error(err))
 
 }
 
 async function saveBlogTitle(title , blogID) {
     const data = { title: title , blogID: blogID }
-        axios.post('/posts/saveblogtitle' , data)
-            .catch(err => console.error(err))
+    axios.post('/posts/saveblogtitle' , data)
+        .catch(err => console.error(err))
+}
+
+async function changePublishPostStatus(postID) {
+    const data = {postID: postID}
+    axios.post('/posts/publishpost' , data)
+        .catch(err => console.error(err))
+}
+
+async function featureBlog(blogID) {
+    const data = {blogID : blogID}
+    axios.post('/posts/featureblog' , data)
+        .catch(err => console.error(err))
 }
 
 export {savePostFormData, 
@@ -144,5 +157,7 @@ export {savePostFormData,
         getMyBlogs,
         getBlogByBlogID,
         saveBlogTravelDates,
-        saveBlogTitle
+        saveBlogTitle,
+        featureBlog,
+        changePublishPostStatus
        }

@@ -6,8 +6,9 @@ import { getIDfromParams } from "../models/URLparams";
 export default function CreatePost() {
 
 
-    const [postArray, setPostArray] = useState([]);
-    const postTitle                 = useRef('') 
+    const [postArray, setPostArray]  = useState([]);
+    const postTitle                  = useRef('')
+    const [published , setPublished] = useState(false) 
 
     function handleTextChange(event , index) {
         let newArray = [...postArray]
@@ -55,13 +56,27 @@ export default function CreatePost() {
                 <input className="input-post-title" 
                     ref={postTitle} /> 
 
+            {published ? 
+                <div>
+                    <label>This post will be visible to other users. </label> 
+                    <button onClick={() => setPublished(current => !current)}>
+                        Make this post private upon save? </button> 
+                </div> 
+                : 
+                <div>
+                    <label>This post will not visible to other users. </label>
+                    <button onClick={() => setPublished(current => !current)}>
+                        Publish this post upon save?</button> 
+                </div>
+            }
+
                 <div className="section-container">
                     {postArray.map(mapArray)}
                 </div>
 
                 <CreateSection postArray={postArray} setPostArray={setPostArray}/>
                 <SavePost state={'new'} bodyArray={postArray} blogID={getIDfromParams()} 
-                    title={postTitle?.current.value}/>
+                    title={postTitle?.current.value} published={published}/>
             </div>
         </div>
     )

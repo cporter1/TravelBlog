@@ -26,7 +26,6 @@ export default function BlogView() {
             .then(async result => {
                 if(result) {
                     blog.current = result
-                    console.log(blog.current)
                     if(blog.current && postsArray) setLoading(false);
                     if(username === blog.current.author) 
                         setBlogOwner(true)
@@ -102,7 +101,7 @@ export default function BlogView() {
             </div>
         )
     }
-    else { // not the blog owner
+    else { // not your blog
         return (
             <div>
                 <h1>{blog.current.author}'s Blog</h1><br/>

@@ -4,7 +4,7 @@ import Post from '../models/Post.js'
 import {goTo} from '../models/Navigation.js'
 
 
-export default function SavePost({bodyArray , blogID , title , state , postID}) {
+export default function SavePost({bodyArray , blogID , title , state , postID, published}) {
 
     const {username} = useUserContext()
 
@@ -12,7 +12,7 @@ export default function SavePost({bodyArray , blogID , title , state , postID}) 
         const post = new Post()
 
         if(state === 'new') {
-            createPost(username , blogID , post.encodePostArray(bodyArray) , title)
+            createPost(username , blogID , post.encodePostArray(bodyArray) , title , published)
         } else if(state === 'update') {
             savePostFormData(post.encodePostArray(bodyArray) , postID)
         }
@@ -25,7 +25,7 @@ export default function SavePost({bodyArray , blogID , title , state , postID}) 
         <div>
             <button disabled={ !(title && bodyArray[0]) } 
                 onClick={ () => { pushPostArray() } } >
-                {state === 'new' ? 'Save New Post' : 'Update Post'}
+                {state === 'new' ? 'Create New Post' : 'Update Post'}
             </button>
         </div>
     )
