@@ -5,6 +5,7 @@ import { getIDfromParams } from "../models/URLparams";
 
 export default function CreatePost() {
 
+    // TODO: see if you can set text without rerender
 
     const [postArray, setPostArray]  = useState([]);
     const postTitle                  = useRef('')

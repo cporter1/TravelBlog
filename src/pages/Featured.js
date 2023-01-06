@@ -18,6 +18,8 @@ export default function Home() {
                 loading : false
             }
         }
+    
+    // TODO: fetch featured blog
 
     // useEffect(() => {
     //     if(bodyState.blog.author) return;
