@@ -2,13 +2,13 @@ import axios from './axios-config.js'
 import { logInContext } from "../models/UserContext"
 import { goTo } from '../models/Navigation.js'
 
-async function savePostFormData(formData , postID) {
+export async function savePostFormData(formData , postID) {
     formData.append('postID' , postID)
     await axios.post('/posts/updatepostarray' , formData ,
         { headers: {'Content-Type': 'multipart/form-data'}})
 }
 
-async function logIn(email , password , setContext) {
+export async function logIn(email , password , setContext) {
     const data = {
         email: email,
         password: password
@@ -25,7 +25,7 @@ async function logIn(email , password , setContext) {
         .catch(error => {})
 }
 
-async function createAccount(username , password , email , role) {
+export async function createAccount(username , password , email , role) {
     const data = {
         email: email,
         username: username,
@@ -37,7 +37,7 @@ async function createAccount(username , password , email , role) {
         .catch(error => {})
 }
 
-async function createBlog(title , author) {
+export async function createBlog(title , author) {
     const data = {
         title: title,
         author: author
@@ -48,7 +48,7 @@ async function createBlog(title , author) {
     
 }
 
-async function createPost(author, blogID, postArray, title, publish) {
+export async function createPost(author, blogID, postArray, title, publish) {
     const data = {
         publish: publish,
         author: author,
@@ -63,7 +63,7 @@ async function createPost(author, blogID, postArray, title, publish) {
 
 }
 
-async function getMyBlogs(username) {
+export async function getMyBlogs(username) {
     return (
         axios.get('/posts/blogsbyauthor' , {
             params: {author : username}
@@ -75,7 +75,7 @@ async function getMyBlogs(username) {
     )
 }
 
-async function getBlogByBlogID(blogID) {
+export async function getBlogByBlogID(blogID) {
     return (
         axios.get('/posts/blogbyblogid' , {
             params: {blogID: blogID}
@@ -87,7 +87,7 @@ async function getBlogByBlogID(blogID) {
     )
 }
 
-async function getPostsByBlogID(blogID) {
+export async function getPostsByBlogID(blogID) {
     return (
         axios.get('/posts/postsbyblogid', {
             params: {id: blogID}
@@ -99,7 +99,7 @@ async function getPostsByBlogID(blogID) {
     )
 }
 
-async function getPostByPostID(postID) {
+export async function getPostByPostID(postID) {
     return (
         axios.get('/posts/postbypostid', {
             params: {postID : postID}
@@ -111,53 +111,45 @@ async function getPostByPostID(postID) {
     )
 }
 
-async function getAllBlogsAndPosts() {
+export async function getAllBlogs() {
     return (
         axios.get('/posts/allblogs')
             .then( async result => {
                 return result.data
             })
-            .catch(error => {})
+            .catch(error => {console.error(error)})
     )
 }
 
-async function saveBlogTravelDates(dates , blogID) {
+export async function saveBlogTravelDates(dates , blogID) {
     const data = {travelDates : dates , blogID : blogID}
     axios.post('/posts/saveblogtraveldates' , data)
         .catch(err => console.error(err))
 
 }
 
-async function saveBlogTitle(title , blogID) {
+export async function saveBlogTitle(title , blogID) {
     const data = { title: title , blogID: blogID }
     axios.post('/posts/saveblogtitle' , data)
         .catch(err => console.error(err))
 }
 
-async function changePublishPostStatus(postID) {
+export async function changePublishPostStatus(postID) {
     const data = {postID: postID}
     axios.post('/posts/publishpost' , data)
         .catch(err => console.error(err))
 }
 
-async function featureBlog(blogID) {
+export async function featureBlog(blogID) {
     const data = {blogID : blogID}
     axios.post('/posts/featureblog' , data)
         .catch(err => console.error(err))
 }
 
-export {savePostFormData, 
-        logIn,
-        createAccount,
-        createPost,
-        getPostsByBlogID,
-        getAllBlogsAndPosts,
-        createBlog,
-        getPostByPostID,
-        getMyBlogs,
-        getBlogByBlogID,
-        saveBlogTravelDates,
-        saveBlogTitle,
-        featureBlog,
-        changePublishPostStatus
-       }
+export async function getFeaturedBlogAndPosts() {
+    return (
+        axios.get('/posts/getfeaturedblog')
+            .then(async result => {return result.data})
+            .catch(err => console.error(err))
+    )
+}

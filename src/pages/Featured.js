@@ -1,34 +1,29 @@
 import { useEffect, useReducer} from "react"
-import { getPostsByBlogID , getBlogByBlogID} from "../api-calls/axios-requests"
-import { getIDfromParams } from "../models/URLparams.js"
+import { getFeaturedBlogAndPosts} from "../api-calls/axios-requests"
 import { goTo } from "../models/Navigation"
 import { dateHandler } from "../models/TimeFormat"
 import { encode } from "base64-arraybuffer"
-
+import { timeAgo } from "../models/TimeFormat"
 
 export default function Home() {
 
     const [bodyState , setContent] = 
-        useReducer(reduceFetches , {blog : {} , postArray: [], loading: true})
+        useReducer(reduceState , {blog : {} , posts: [], loading: true})
 
-    function reduceFetches(state , action) {
+    function reduceState(state , action) {
             return {
-                postArray : action.posts,
                 blog      : action.blog,
-                loading : false
+                posts     : action.posts,
+                loading   : false
             }
         }
-    
-    // TODO: fetch featured blog
 
-    // useEffect(() => {
-    //     if(bodyState.blog.author) return;
-    //     Promise.all([ getPostsByBlogID( getIDfromParams() ) ,
-    //         getBlogByBlogID( getIDfromParams() ) ])
-    //         .then(async result => {
-    //             setContent({blog: result[1] , posts: result[0]});      
-    //         })
-    // },[])
+    useEffect(() => {
+        getFeaturedBlogAndPosts()
+            .then(async result => {
+                setContent({blog: result[0] , posts: result[1]})
+            })
+    },[])
 
     function postMap(element , index) {
         return (
@@ -64,17 +59,17 @@ export default function Home() {
         } else {console.error('function postSectionMap: invalid array')}
     }
 
-    if(bodyState.loading) return <div>loading...</div>;
-    else { // not your blog
+    if(bodyState.loading) {return <div>loading...</div>;}
+    else { 
         return (
             <div>
                 <h1>{bodyState.blog?.author}'s Blog</h1><br/>
                 <h2>{bodyState.blog?.title}</h2><br/>
-                <h2>Last Update: {bodyState.blog?.last_updated}</h2>
+                <h2>Last Updated: {timeAgo(bodyState.blog?.last_updated)}</h2>
 
                 <h2>Travel Dates: {bodyState.blog?.travel_dates} </h2> <br/><br/>
 
-                {bodyState.postArray?.map(postMap)}
+                {bodyState.posts?.map(postMap)}
             </div>
         )
     }
