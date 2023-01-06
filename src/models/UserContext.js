@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { signOut } from "../api-calls/axios-requests";
 
 const AppContext = React.createContext()
 
@@ -14,6 +15,7 @@ export function logInContext(email , username , role) {
 }
 
 export function removeSession() {
+    signOut(sessionStorage.getItem('username'))
     sessionStorage.removeItem('email')
     sessionStorage.removeItem('username')
     sessionStorage.removeItem('role')

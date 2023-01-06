@@ -6,6 +6,7 @@ import { goTo } from "../models/Navigation"
 import { dateHandler } from "../models/TimeFormat"
 import { encode } from "base64-arraybuffer"
 import { useUserContext } from "../models/UserContext"
+import { timeAgo } from "../models/TimeFormat"
 
 
 export default function BlogView() {
@@ -28,7 +29,7 @@ export default function BlogView() {
         Promise.all([ getPostsByBlogID( getIDfromParams() ) ,
             getBlogByBlogID( getIDfromParams() ) ])
             .then(async result => {
-                setContent({blog: result[1] , posts: result[0]});      
+                setContent({blog: result[1] , posts: (result[0] ? result[0] : []) });      
             })
     },[])
 
@@ -80,13 +81,13 @@ export default function BlogView() {
     else if(bodyState.blogOwner) { // this is your blog
         return (
             <div>
-                <h1>{bodyState.blog.author}'s Blog</h1><br/>
+                <h1>Your Blog</h1><br/>
                 <label>Title: </label>
                 <input type='text' defaultValue={bodyState.blog?.title}
                     onChange={(e) => bodyState.blog.title = e.target.value}/>
                 <button onClick={() => submitNewTitle()} >Save Title</button><br/>
 
-                <label>Last Update: {bodyState.blog.last_updated}</label><br/>
+                <label>Last Update: {timeAgo(bodyState.blog.last_updated)}</label><br/>
 
                 <label>Travel Dates: </label>
                 <input type='text' defaultValue={bodyState.blog?.travel_dates}

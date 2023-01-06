@@ -6,21 +6,24 @@ export function dateHandler(date) {
 
     return formattedTime;
 }
-// origin = jan 1 1970
-// date.nnow - updated
-// 45 minutes => 12 hour => 25 day =>
+
 export function timeAgo(date) {
+    if(date === null) return 'No posts Yet'
     const minAgo = Math.ceil((Date.now() - date) / (1000 * 60))
     if(minAgo < 10) return 'Just Now'
     if(minAgo < 45) return  minAgo + ' minutes ago'
 
     const hoursAgo  = Math.ceil(minAgo/60)
-    if(hoursAgo < 12) return hoursAgo + ' hours ago'
+    if(hoursAgo === 1) return '1 hour ago'
+    if(hoursAgo < 12)  return hoursAgo + ' hours ago'
 
     const daysAgo   = Math.ceil(hoursAgo/24)
-    if(daysAgo < 25) return daysAgo + ' days ago'
+    if(daysAgo === 1) return '1 day ago'
+    if(daysAgo < 25)  return daysAgo + ' days ago'
 
     const monthsAgo = Math.ceil(daysAgo/30)
+    if(monthsAgo === 1) 
+        return '1 month ago';
     return monthsAgo + ' months ago'
 
 }

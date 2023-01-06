@@ -1,11 +1,11 @@
 import {useRef} from "react"
-import {logIn} from '../api-calls/axios-requests.js'
+import {signIn} from '../api-calls/axios-requests.js'
 import {useUserContext} from '../models/UserContext'
 
 
 export default function SignIn() {
 
-    const emailRef = useRef()
+    const usernameRef = useRef()
     const passwordRef = useRef()
 
     const { setContext } = useUserContext()
@@ -14,14 +14,14 @@ export default function SignIn() {
 
     return (
         <div className="login-container">
-            <label>Email:</label>
-            <input ref={emailRef}/>
+            <label>Username:</label>
+            <input ref={usernameRef}/>
 
             <label>Password:</label>
             <input type='password' ref={passwordRef}/>
 
             <button className='delete-section-button' onClick={ () => { 
-                logIn(emailRef.current.value , passwordRef.current.value , setContext) }}>Log In </button>
+                signIn(usernameRef.current.value , passwordRef.current.value , setContext) }}>Log In </button>
         </div>
     )
 }

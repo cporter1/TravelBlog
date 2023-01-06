@@ -8,22 +8,29 @@ export async function savePostFormData(formData , postID) {
         { headers: {'Content-Type': 'multipart/form-data'}})
 }
 
-export async function logIn(email , password , setContext) {
+export async function signIn(username , password , setContext) {
     const data = {
-        email: email,
+        username: username,
         password: password
     }
     axios.post('/accounts/signin' , data)
         .then( result => {
             if(result.status === 200) {
-                logInContext(email , result.data[0].username , result.data[0].role)
-                setContext(email , result.data[0].username , result.data[0].role)
+                logInContext(result.data[0].email , result.data[0].username , result.data[0].role)
+                setContext(result.data[0].email , result.data[0].username , result.data[0].role)
                 
                 goTo('/')
             }
         })
         .catch(error => {})
 }
+
+export async function signOut(username) {
+    const data = {username: username}
+    axios.post('/accounts/signout', data)
+        .then() 
+        .catch(error => {console.error(error)})
+}   
 
 export async function createAccount(username , password , email , role) {
     const data = {
