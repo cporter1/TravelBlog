@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar"
 import Route from './components/Route'
 
-import Home      from './pages/Home'
+import Featured      from './pages/Featured'
 import AllBlogs from "./pages/AllBlogs";
 import MyAccount from "./pages/MyAccount";
 import MyBlogs   from './pages/MyBlogs'
@@ -19,11 +19,12 @@ import UserContextProvider from './models/UserContext'
 
 
 function App() {
+
   return (
     <UserContextProvider>
       <div className='main-container'>
         <Navbar />
-        <Route path='/'              component = {<Home      />} />
+        <Route path='/'              component = {<Featured     />} />
         <Route path='/blogs'         component = {<AllBlogs  />} />
         <Route path='/myaccount'     component = {<MyAccount />} />
         <Route path='/myblogs'       component = {<MyBlogs   />} />
@@ -33,7 +34,7 @@ function App() {
         <Route path='/signin'        component = {<SignIn/>}     />
         <Route path='/blogs/'        component = {<BlogView/>}   />
         <Route path='/createaccount' component = {<CreateAccount/>} />
-        <Route path='/editpost/'      component = {<EditPost/>}   />
+        <Route path='/editpost/'     component = {<EditPost/>}   />
       </div>
     </UserContextProvider>
   );

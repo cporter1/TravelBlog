@@ -54,7 +54,7 @@ export default function CreatePost() {
             <div className="post-content">
                 <h1 className="post-title">Post Title:</h1>
                 <input className="input-post-title" 
-                    ref={postTitle} /> 
+                    ref={postTitle}/> <br/>
 
             {published ? 
                 <div>

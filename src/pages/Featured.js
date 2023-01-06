@@ -1,16 +1,13 @@
 import { useEffect, useReducer} from "react"
-import { getPostsByBlogID , getBlogByBlogID ,
-         saveBlogTravelDates, saveBlogTitle } from "../api-calls/axios-requests"
+import { getPostsByBlogID , getBlogByBlogID} from "../api-calls/axios-requests"
 import { getIDfromParams } from "../models/URLparams.js"
 import { goTo } from "../models/Navigation"
 import { dateHandler } from "../models/TimeFormat"
 import { encode } from "base64-arraybuffer"
-import { useUserContext } from "../models/UserContext"
 
 
-export default function BlogView() {
+export default function Home() {
 
-    const {username} = useUserContext()
     const [bodyState , setContent] = 
         useReducer(reduceFetches , {blog : {} , postArray: [], loading: true})
 
@@ -18,27 +15,18 @@ export default function BlogView() {
             return {
                 postArray : action.posts,
                 blog      : action.blog,
-                blogOwner : username === action.blog.author,
                 loading : false
             }
         }
 
-    useEffect(() => {
-        if(bodyState.blog.author) return;
-        Promise.all([ getPostsByBlogID( getIDfromParams() ) ,
-            getBlogByBlogID( getIDfromParams() ) ])
-            .then(async result => {
-                setContent({blog: result[1] , posts: result[0]});      
-            })
-    },[])
-
-
-    function submitNewTitle() {
-        saveBlogTitle(bodyState.blog.title , bodyState.blog.id)
-    }
-    function submitNewTravelDates() {
-        saveBlogTravelDates(bodyState.blog.travel_dates , bodyState.blog.id)
-    }
+    // useEffect(() => {
+    //     if(bodyState.blog.author) return;
+    //     Promise.all([ getPostsByBlogID( getIDfromParams() ) ,
+    //         getBlogByBlogID( getIDfromParams() ) ])
+    //         .then(async result => {
+    //             setContent({blog: result[1] , posts: result[0]});      
+    //         })
+    // },[])
 
     function postMap(element , index) {
         return (
@@ -74,33 +62,7 @@ export default function BlogView() {
         } else {console.error('function postSectionMap: invalid array')}
     }
 
-    if(bodyState.loading) {
-        return <div>loading...</div>
-    }
-    else if(bodyState.blogOwner) { // this is your blog
-        return (
-            <div>
-                <h1>{bodyState.blog.author}'s Blog</h1><br/>
-                <label>Title: </label>
-                <input type='text' defaultValue={bodyState.blog?.title}
-                    onChange={(e) => bodyState.blog.title = e.target.value}/>
-                <button onClick={() => submitNewTitle()} >Save Title</button><br/>
-
-                <label>Last Update: {bodyState.blog.last_updated}</label><br/>
-
-                <label>Travel Dates: </label>
-                <input type='text' defaultValue={bodyState.blog?.travel_dates}
-                    onChange={(e) => bodyState.blog.travel_dates = e.target.value}/>
-                <button onClick={() => submitNewTravelDates()}>
-                    Save Travel Dates</button> <br/><br/>
-            
-                <button onClick={()=>{goTo(`/createpost/?${getIDfromParams()}`)}}>
-                    Create Post</button> <br/><br/>
-
-                {bodyState.postArray?.map(postMap)}
-            </div>
-        )
-    }
+    if(bodyState.loading) return <div>loading...</div>;
     else { // not your blog
         return (
             <div>
