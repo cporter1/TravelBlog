@@ -17,14 +17,25 @@ import './styles/main.css'
 
 import UserContextProvider from './models/UserContext'
 
+function notSignedIn() {
+  return !(sessionStorage.getItem('username') !== null)
+}
 
 function App() {
-
+  if(notSignedIn()) {
+    return (
+      <UserContextProvider>
+        <div className='main-container'>
+          <Route path='*' component = {<SignIn  />} />
+        </div>
+    </UserContextProvider>
+  );
+  } else {
   return (
     <UserContextProvider>
       <div className='main-container'>
         <Navbar />
-        <Route path='/'              component = {<Featured     />} />
+        <Route path='/'              component = {<Featured  />} />
         <Route path='/blogs'         component = {<AllBlogs  />} />
         <Route path='/myaccount'     component = {<MyAccount />} />
         <Route path='/myblogs'       component = {<MyBlogs   />} />
@@ -38,6 +49,7 @@ function App() {
       </div>
     </UserContextProvider>
   );
+  }
 }
 
 export default App;

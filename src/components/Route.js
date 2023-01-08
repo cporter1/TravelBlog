@@ -8,7 +8,7 @@ export default function Route({path , children, component}) {
     // truncate URL path in case of params
     for (let i = 0; i < currentPath.length; i++) {
 
-        if (currentPath.charAt(i) == '?') {
+        if (currentPath.charAt(i) === '?') {
             setCurrentPath( currentPath.substring(0,i) )
             break
         }
@@ -26,6 +26,8 @@ export default function Route({path , children, component}) {
             window.removeEventListener('popstate' , onLocationChange)
         }
     }, [])
+
+    if (path === '*') return component;
 
     return currentPath === path ? component : null
 }

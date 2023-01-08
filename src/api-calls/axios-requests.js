@@ -1,6 +1,5 @@
 import axios from './axios-config.js'
 import { logInContext } from "../models/UserContext"
-import { goTo } from '../models/Navigation.js'
 
 export async function savePostFormData(formData , postID) {
     formData.append('postID' , postID)
@@ -13,23 +12,22 @@ export async function signIn(username , password , setContext) {
         username: username,
         password: password
     }
-    axios.post('/accounts/signin' , data)
+    return axios.post('/accounts/signin' , data)
         .then( result => {
             if(result.status === 200) {
                 logInContext(result.data[0].email , result.data[0].username , result.data[0].role)
                 setContext(result.data[0].email , result.data[0].username , result.data[0].role)
-                
-                goTo('/')
+                return true
             }
         })
-        .catch(error => {})
+        .catch()
 }
 
 export async function signOut(username) {
     const data = {username: username}
     axios.post('/accounts/signout', data)
         .then() 
-        .catch(error => {console.error(error)})
+        .catch()
 }   
 
 export async function createAccount(username , password , email , role) {
@@ -51,7 +49,7 @@ export async function createBlog(title , author) {
     }
 
     axios.post('/posts/createblog', data)
-        .catch(error => {})
+        .catch()
     
 }
 
@@ -66,7 +64,7 @@ export async function createPost(author, blogID, postArray, title, publish) {
     await axios.post('/posts/createpost' , data)
         .then(async (result) => { 
             savePostFormData(postArray, result.data[0].id); })
-        .catch(error => {console.error(error)})
+        .catch()
 
 }
 
@@ -90,7 +88,7 @@ export async function getBlogByBlogID(blogID) {
             .then(async result => {
                 return result.data[0]
             })
-            .catch(error => console.error(error))
+            .catch()
     )
 }
 
@@ -102,7 +100,7 @@ export async function getPostsByBlogID(blogID) {
             .then(async result => {
                 return result.data
             })
-            .catch(error => {console.error(error)})
+            .catch()
     )
 }
 
@@ -114,7 +112,7 @@ export async function getPostByPostID(postID) {
             .then(async result => {
                 return result.data[0]
             })
-            .catch(error => console.error(error))
+            .catch()
     )
 }
 
@@ -124,39 +122,39 @@ export async function getAllBlogs() {
             .then( async result => {
                 return result.data
             })
-            .catch(error => {console.error(error)})
+            .catch()
     )
 }
 
 export async function saveBlogTravelDates(dates , blogID) {
     const data = {travelDates : dates , blogID : blogID}
     axios.post('/posts/saveblogtraveldates' , data)
-        .catch(err => console.error(err))
+        .catch()
 
 }
 
 export async function saveBlogTitle(title , blogID) {
     const data = { title: title , blogID: blogID }
     axios.post('/posts/saveblogtitle' , data)
-        .catch(err => console.error(err))
+        .catch()
 }
 
 export async function changePublishPostStatus(postID) {
     const data = {postID: postID}
     axios.post('/posts/publishpost' , data)
-        .catch(err => console.error(err))
+        .catch()
 }
 
 export async function featureBlog(blogID) {
     const data = {blogID : blogID}
     axios.post('/posts/featureblog' , data)
-        .catch(err => console.error(err))
+        .catch()
 }
 
 export async function getFeaturedBlogAndPosts() {
     return (
         axios.get('/posts/getfeaturedblog')
             .then(async result => {return result.data})
-            .catch(err => console.error(err))
+            .catch()
     )
 }

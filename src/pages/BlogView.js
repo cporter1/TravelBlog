@@ -19,7 +19,7 @@ export default function BlogView() {
             return {
                 postArray : action.posts,
                 blog      : action.blog,
-                blogOwner : username === action.blog.author,
+                blogOwner : username === action.blog?.author,
                 loading : false
             }
         }
@@ -29,7 +29,8 @@ export default function BlogView() {
         Promise.all([ getPostsByBlogID( getIDfromParams() ) ,
             getBlogByBlogID( getIDfromParams() ) ])
             .then(async result => {
-                setContent({blog: result[1] , posts: (result[0] ? result[0] : []) });      
+                setContent({blog: result[1] , 
+                    posts: (result[0] ? result[0] : []) });      
             })
     },[])
 
@@ -107,7 +108,7 @@ export default function BlogView() {
             <div>
                 <h1>{bodyState.blog?.author}'s Blog</h1><br/>
                 <h2>{bodyState.blog?.title}</h2><br/>
-                <h2>Last Update: {bodyState.blog?.last_updated}</h2>
+                <h2>Last Update: {timeAgo(bodyState.blog?.last_updated)}</h2>
 
                 <h2>Travel Dates: {bodyState.blog?.travel_dates} </h2> <br/><br/>
 

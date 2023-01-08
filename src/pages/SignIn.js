@@ -1,5 +1,6 @@
 import {useRef} from "react"
 import {signIn} from '../api-calls/axios-requests.js'
+import { goTo } from "../models/Navigation.js"
 import {useUserContext} from '../models/UserContext'
 
 
@@ -10,7 +11,13 @@ export default function SignIn() {
 
     const { setContext } = useUserContext()
 
-    // TODO: put navigation logic on button press here
+    async function handleSignIn() {
+        if(await signIn(usernameRef.current.value , passwordRef.current.value , setContext)) {
+            goTo('/')
+            window.location.reload(true)
+        }
+
+    }
 
     return (
         <div className="login-container">
@@ -21,7 +28,7 @@ export default function SignIn() {
             <input type='password' ref={passwordRef}/>
 
             <button className='delete-section-button' onClick={ () => { 
-                signIn(usernameRef.current.value , passwordRef.current.value , setContext) }}>Log In </button>
+                handleSignIn() }}>Log In </button>
         </div>
     )
 }

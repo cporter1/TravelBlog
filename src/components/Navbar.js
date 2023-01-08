@@ -1,6 +1,7 @@
 import Link from "./Link"
 import { useUserContext } from "../models/UserContext"
 import { removeSession } from "../models/UserContext"
+import { goTo } from "../models/Navigation"
 
 export default function Navbar() {
 
@@ -20,16 +21,11 @@ export default function Navbar() {
                     <Link href='/myblogs' className='navbar-link-item'  >My Blogs</Link>
                     <div className='navbar-link-item' 
                         onClick={() => {removeSession(); setContext(null , null , null);
-                            window.location.reload(true)}}>Log Out</div>
+                            goTo('/signin')}}>Log Out</div>
                 </section>
             </ul>
         ) : (
             <ul className="navbar-container">
-                <section className="link-container">
-                    <Link href='/'       className='navbar-link-item'>Featured Blog</Link>
-                    <Link href='/blogs'  className='navbar-link-item'>All Blogs</Link>
-                </section>
-                
                 <section className="link-container">
                     <Link href='/signin' className='navbar-link-item'>Sign In</Link>
                 </section>
