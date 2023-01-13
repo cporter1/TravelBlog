@@ -50,7 +50,7 @@ export default function MyAccount() {
 
     function mapFeaturedStatus(element , index) {
         return (
-            <section key = {element.id}>
+            <section className="featured-grid" key = {element.id}>
                 <label>{element.title} </label>
                 <label>{element.author} </label>
                 <label>{element.featured.toString()} </label>
@@ -63,11 +63,9 @@ export default function MyAccount() {
 
     if(accRole === 'admin') {
         return (
-            <div>
-                <ul>
-                    <Link href='/createaccount' className='navbar-link-item'>
-                        Create Account</Link>
-                </ul>
+            <div className="column-container">
+                <Link style={{marginTop: '10px'}} href='/createaccount' className='navbar-link-item'>
+                    Create Account</Link>
                 <ul>
                     <AccountInfo username={username} email={email}/>
                 </ul>
@@ -80,7 +78,7 @@ export default function MyAccount() {
     }
     else {
         return (
-            <div>
+            <div className="column-container">
                 <ul>
                     <AccountInfo username={username} email={email}/>
                 </ul>

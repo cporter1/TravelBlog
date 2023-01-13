@@ -67,7 +67,7 @@ export default function EditPost() {
     }
 
     return (
-        <div className="section-container">
+        <div className="column-container">
             <h1 className="post-title">Post Title:</h1>
             <input className="input-post-title" defaultValue={postTitle.current}
                 ref={postTitle} /> 

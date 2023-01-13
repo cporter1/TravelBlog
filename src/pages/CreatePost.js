@@ -51,7 +51,7 @@ export default function CreatePost() {
     }
 
     return (
-        <div className="content-container">
+        <div className="column-container">
             <div className="post-content">
                 <h1 className="post-title">Post Title:</h1>
                 <input className="input-post-title" 

@@ -17,13 +17,16 @@ export default function AllBlogs() {
     },[])
 
     return (
-        <div>
-            {blogArray.map((element , index) => {
-                return (
-                    <BlogBanner title={element.title} author={element.author} 
-                        lastUpdated={element.last_updated} key={index} id={element.id}/>
-                )
-            })}
+        <div className="column-container">
+            <h1>All Blogs</h1>
+            <div className="blogs-wrapper">
+                {blogArray.map((element , index) => {
+                    return (
+                        <BlogBanner title={element.title} author={element.author} 
+                            lastUpdated={element.last_updated} key={index} id={element.id}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }

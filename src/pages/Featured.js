@@ -27,16 +27,19 @@ export default function Home() {
 
     function postMap(element , index) {
         return (
-            <section key={element.id}>
-                <div>{element.title} </div>
-                <div>{dateHandler(element.time_posted)}</div>
-                <div>{element.body_array?.map(bodyMap)}</div>
+            <section className="post" key={element.id}>
+                <header className="post-header">
+                    <h3>{element.title} </h3>
+                    <h6>Posted {dateHandler(element.time_posted)}</h6>
+                </header>
+                <section className="body-section">
+                    {element.body_array?.map(bodyMap)}
+                </section>
 
                 {bodyState.blogOwner ? 
                     <button onClick={() => goTo(`/editpost/?${element.id}`)}>
                         Edit Post</button> 
                     : null}
-                <br/><br/>
             </section>
         )
 
@@ -44,17 +47,17 @@ export default function Home() {
     function bodyMap(element , index) {
         if(element['type'] === 'text') { // textbox section
             return (
-                <section key={index}>
+                <div className="body-text" key={index}>
                     {element.text}
-                </section>
+                </div>
             )
         } else if(element['type'] === 'image') {
             return (
-                <section key={index}>
+                <div className="img-wrapper" key={index}>
                     <img alt='' className="uploaded-images"
-                        src={`data:image/jpeg;base64, ${encode(element.file.Body.data)}`}/>
+                        src={`data:image/jpeg;base64,${encode(element.file.Body.data)}`}/>
                         <div>{element.text}</div>
-                </section>
+                </div>
             )
         } else {console.error('function postSectionMap: invalid array')}
     }
@@ -62,14 +65,21 @@ export default function Home() {
     if(bodyState.loading) {return <div>loading...</div>;}
     else { 
         return (
-            <div>
-                <h1>{bodyState.blog?.author}'s Blog</h1><br/>
-                <h2>{bodyState.blog?.title}</h2><br/>
-                <h2>Last Updated: {timeAgo(bodyState.blog?.last_updated)}</h2>
+            <div className="column-container">
+                <header className="blog-header-container">
+                    <h1>{bodyState.blog?.title}</h1>
+                    <h3>By {bodyState.blog?.author}</h3>
 
-                <h2>Travel Dates: {bodyState.blog?.travel_dates} </h2> <br/><br/>
+                    <div className="blog-time-wrapper">
+                        <h5>Updated {timeAgo(bodyState.blog?.last_updated)}</h5>
+                        <h5>-</h5>
+                        <h5>Travel Dates: {bodyState.blog?.travel_dates} </h5>
+                    </div>
+                </header>
 
-                {bodyState.posts?.map(postMap)}
+                <article>
+                    {bodyState.posts?.map(postMap)}
+                </article>
             </div>
         )
     }

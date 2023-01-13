@@ -4,30 +4,84 @@
     margin: 0;
 }
 
-body {
-    width: 100vw;
+#root {
+    --background-base: rgb(221, 231, 200);
+    --background-column: rgb(133, 103, 48);
+    --background-outdent: rgb(247, 230, 247);
+    --post-section: rgb(0, 255, 255);
+    --navbar-color:  rgb(89, 89, 149);
+    --img-wrapper-color : rgb(100,100,100)
 }
 
-#root {
-    background-color: rgb(167, 134, 167);
+body {
+  font-size:x-large;
 }
 
 .main-container {
-    min-height: 100vh;
-    min-width: 100%;
+  background-color: var(--background-base);
+  min-height: 100vh;
+  min-width: 100%;
 }
 
 
-.content-container {
+.column-container {
+  flex-direction: column;
+  display: flex;
+  align-items:center;
+  min-height: 100vh;
+  width: 1100px;
+  margin: 0 auto;
+  background-color: var(--background-column);
+}
+
+/* Signin Page */
+
+.signin-container {
   flex-direction: column;
   display: flex;
   justify-content: center;
+  align-items:center;
+  text-align: center;
+  height: 100vh;
+  width: 1100px;
+  margin: 0 auto;
+  background-color: var(--background-column);
+}
+
+
+.signin-outdent {
+  margin-bottom: 20%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: var(--background-outdent);
+  border: 3px solid gray;
+}
+
+.signin-header {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.signin-label {
+  margin-bottom: 2px;
+}
+
+.signin-input {
+  text-align: center;
+  margin: auto 5% 5%;
+}
+
+.signin-button {
+  margin: auto 23% 5px;
+  padding: 5px;
 }
 
 /* Navbar CSS */
 
 .navbar-container {
-    background-color: rgb(89, 89, 149);
+    background-color: var(--navbar-color);
     display: flex;
     justify-content: space-around;
     list-style: none;
@@ -53,14 +107,105 @@ body {
   }
 
 
-  /* My blogs page CSS */
+  /* Blogs/Posts Headers  */
+
+  .post-header {
+    text-align: center;
+    margin-bottom: 2%;
+  }
+
+  .blog-header-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+  .blog-time-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .blog-time-wrapper > h5 {
+    margin: 5px;
+  }
+
+  .post-title {
+    margin-top: 1%;
+  }
+
+  .input-title {
+    font-size: larger;
+    text-align: center;
+  }
+
+  .edit-title-wrapper, .edit-traveldates-wrapper {
+    display: grid;
+    grid-template-columns: 200px 350px 200px;
+    margin-bottom: 2%;
+  }
+
+  /* Blogs/Posts body CSS */
+
+  .body-text {
+    text-justify: inter-word;
+    padding: 5px;
+    margin: auto 30px;
+  }
+
+  .body-section {
+    flex-direction: column;
+    display: flex;
+    border-radius: 5px;
+    background-color: rgb(220, 222, 245);
+  }
+
+  .post {
+    display: grid;
+    grid-template-columns: 300px 800px;
+    margin: 0px 0px 50px 0px;
+    /* margin-bottom: 5%; */
+    border-radius: 5px;
+    background-color: var(--post-section);
+  }
+
+  .blog-banner {
+    display: grid;
+    padding: 10px;
+    text-align: center;
+    background-color: aqua;
+    border-radius: 10px;
+  }
+
+  .blogs-wrapper {
+    margin-top: 10px;
+    display: grid;
+    column-gap: 20px;
+    row-gap: 20px;
+    grid-template-columns: 250px 250px 250px 250px;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 
   .new-blog-button {
     padding: 30px;
   }
 
+  .img-wrapper {
+    align-self: center;
+    background-color: var(--img-wrapper-color);
+    width: 75%;
+    border-radius: 5px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 10px;
+    text-align: center;
+  }
+
   .uploaded-images {
-    max-width: 30%;
+    border-radius: 5px;
+    max-width: 100%;
   }
 
   .create-section-container {
@@ -74,23 +219,25 @@ body {
     align-items: center;
   }
 
-  .post-title {
-    margin-top: 1%;
-    color: white;
-  }
-
   .post-content {
     flex-direction: column;
     display: flex;
     align-items: center;
   }
 
-  .post-section {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-  }
-
   .delete-section-button {
     padding: 10px;
+  }
+
+  .create-post-button {
+    margin-top: 2%;
+    align-self: center;
+    width: 30%;
+  }
+
+  /* My Account Page */
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
   }

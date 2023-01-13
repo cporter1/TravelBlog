@@ -18,13 +18,16 @@ export default function MyBlogs() {
     },[])
 
     return (
-        <div className="content-container">
-            {blogArray.map((element , index) => {
-                return (
-                    <BlogBanner title={element.title} author={element.author} 
-                    lastUpdated={element.last_updated} key={index} id={element.id}/>
-                )
-            })}
+        <div className="column-container">
+            <h1>My Blogs</h1>
+            <div className="blogs-wrapper">
+                {blogArray.map((element , index) => {
+                    return (
+                        <BlogBanner title={element.title} author={element.author} 
+                            lastUpdated={element.last_updated} key={index} id={element.id}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }

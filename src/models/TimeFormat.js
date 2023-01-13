@@ -2,7 +2,7 @@
 export function dateHandler(date) {
     const published = new Date(+date)
     const formattedTime = numberToMonth( published.getMonth() ) + ' ' 
-    + published.getDate() + ' ' + published.getFullYear();
+    + published.getDate() + ', ' + published.getFullYear();
 
     return formattedTime;
 }

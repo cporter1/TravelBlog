@@ -8,7 +8,7 @@ export default function Navbar() {
     const { email , setContext } = useUserContext()
 
     return (
-        <div>
+        <>
         {(email) ? (
             <ul className="navbar-container">
                 <section className="link-container">
@@ -24,13 +24,8 @@ export default function Navbar() {
                             goTo('/signin')}}>Log Out</div>
                 </section>
             </ul>
-        ) : (
-            <ul className="navbar-container">
-                <section className="link-container">
-                    <Link href='/signin' className='navbar-link-item'>Sign In</Link>
-                </section>
-            </ul>
+        ) : ( null
         )}
-        </div>
+        </>
     )
 }
