@@ -5,7 +5,8 @@ export default function Post() {
         stateFunction([...array, 
             {
                 type: 'text',
-                text: ''
+                text: '',
+                id: Math.random()
             }
         ])
     }
@@ -18,7 +19,8 @@ export default function Post() {
                 type: 'image',
                 text: '',
                 data: file,
-                url: URL.createObjectURL(file) 
+                url: URL.createObjectURL(file),
+                id: Math.random() 
             } ]
         )
     }

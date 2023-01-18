@@ -26,22 +26,24 @@ export default function CreatePost() {
     }
 
     function mapArray(element , index) {
-
         if(element.type === 'image') {
             return (
-                <section className="post-section" key={index}>
-                    <img className="uploaded-images" src={element.url} key={index} alt='hi' />
-                    <input className="image-caption" 
-                        onChange={(event => {handleTextChange(event , index) } )}/>
-                    <button className="delete-section-button" 
+                <section className="post-section" key={element.id}>
+                    <div className="img-wrapper">
+                        <img className="uploaded-image" src={element.url} key={index} alt='hi' />
+                        <textarea className="edit-image-caption" 
+                            onChange={(event => {handleTextChange(event , index) } )}/>
+                    </div>
+                    <button className="delete-section-button" id='delete-img-section'
                         onClick={ e => {deleteSection(index)} }>Delete</button>
+                    
                 </section>
             )
         }
         else if(element.type === 'text') {
             return (
-                <section className="post-section" key={index}>
-                    <textarea onChange={(event) => {handleTextChange(event , index)}}/>
+                <section className="post-section" key={element.id}>
+                    <textarea className="post-text" onChange={(event) => {handleTextChange(event , index)}}/>
                     <button className="delete-section-button" 
                         onClick={event => {deleteSection(index)}}>Delete</button>
                 </section>
@@ -52,24 +54,26 @@ export default function CreatePost() {
     return (
         <div className="column-container">
             <div className="post-content">
-                <h1 className="post-title">Post Title:</h1>
-                <input className="input-post-title" 
-                    ref={postTitle}/> <br/>
+                <h1 className="post-title">Create Post</h1>
+                <header className="create-post-header-wrapper">
+                    <div className="post-title">Post Title:</div>
+                    <input className="input-post-title" 
+                        ref={postTitle}/>
 
-                {published ? 
-                    <div>
-                        <label>This post will be visible to other users. </label> 
-                        <button onClick={() => setPublished(current => !current)}>
-                            Make this post private upon save? </button> 
-                    </div> 
-                    : 
-                    <div>
-                        <label>This post will not visible to other users. </label>
-                        <button onClick={() => setPublished(current => !current)}>
-                            Publish this post upon save?</button> 
-                    </div>
-                }
-
+                    {published ? 
+                        <>
+                            <label>This post WILL be visible to other users. </label> 
+                            <button style={{fontSize: 'x-large'}} onClick={() => setPublished(current => !current)}>
+                                Make this post private upon save? </button> 
+                        </> 
+                        : 
+                        <>
+                            <label>This post will NOT visible to other users. </label>
+                            <button style={{fontSize: 'x-large'}} onClick={() => setPublished(current => !current)}>
+                                Publish this post upon save?</button> 
+                        </>
+                    }
+                </header>
                 <div className="section-container">
                     {postArray.map(mapArray)}
                 </div>

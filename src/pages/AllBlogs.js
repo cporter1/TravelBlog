@@ -18,7 +18,8 @@ export default function AllBlogs() {
 
     return (
         <div className="column-container">
-            <h1>All Blogs</h1>
+            <h1 className="title-header">All Blogs</h1>
+            <hr className="hor-divider"/>
             <div className="blogs-wrapper">
                 {blogArray.map((element , index) => {
                     return (

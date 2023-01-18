@@ -7,7 +7,7 @@ export default function BlogBanner({author , lastUpdated , title, id}) {
         <section className="blog-banner" onClick={ () => { goTo(`/blogs/?${id}`) }}>
             <h3>{title}</h3>
             <h6>By {author}</h6>
-            <h6>Updated {timeAgo(lastUpdated)}</h6>
+            <h6>{timeAgo(lastUpdated)}</h6>
         </section>
     )
 }

@@ -94,7 +94,7 @@ export default function BlogView() {
             )
         } else if(element['type'] === 'image') {
             return (
-                <section className="img-wrapper" key={index}>
+                <section className="img-wrapper" style={{marginBottom: '2%'}} key={index}>
                     <img alt='' className="uploaded-image"
                         src={`data:image/jpeg;base64, ${encode(element.file.Body.data)}`}/>
                         <div className="edit-image-caption">{element.text}</div>
@@ -129,12 +129,11 @@ export default function BlogView() {
                             buttonText='Save Travel Dates' 
                             confirmText='Are you sure you want to save the travel dates?'/>
                     </div>
-                    <label>Updated {timeAgo(bodyState.blog.last_updated)}</label>
+                    <label>{timeAgo(bodyState.blog.last_updated)}</label>
                     <button className="create-post-button" 
                         onClick={()=>{goTo(`/createpost/?${getIDfromParams()}`)}}>
                         Create Post</button>
                 </header>
-
                 {bodyState.postArray?.map(postMap)}
             </div>
         )
@@ -146,7 +145,7 @@ export default function BlogView() {
                     <h1>{bodyState.blog?.title}</h1>
                     <h3>By {bodyState.blog?.author}</h3>
                     <div className="blog-time-wrapper">
-                        <h5>Updated {timeAgo(bodyState.blog?.last_updated)}</h5>
+                        <h5>{timeAgo(bodyState.blog?.last_updated)}</h5>
                         <h5>-</h5>
                         <h5>Travel Dates: {bodyState.blog?.travel_dates} </h5>
                     </div>

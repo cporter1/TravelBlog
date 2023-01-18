@@ -19,7 +19,8 @@ export default function MyBlogs() {
 
     return (
         <div className="column-container">
-            <h1>My Blogs</h1>
+            <h1 className="title-header">My Blogs</h1>
+            <hr className="hor-divider"/>
             <div className="blogs-wrapper">
                 {blogArray.map((element , index) => {
                     return (

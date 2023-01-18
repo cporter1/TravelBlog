@@ -10,21 +10,21 @@ export function dateHandler(date) {
 export function timeAgo(date) {
     if(date === null) return 'No posts Yet'
     const minAgo = Math.ceil((Date.now() - date) / (1000 * 60))
-    if(minAgo < 10) return 'Just Now'
-    if(minAgo < 45) return  minAgo + ' minutes ago'
+    if(minAgo < 10) return 'Updated Just Now'
+    if(minAgo < 45) return  'Updated ' + minAgo + ' minutes ago'
 
     const hoursAgo  = Math.ceil(minAgo/60)
-    if(hoursAgo === 1) return '1 hour ago'
-    if(hoursAgo < 12)  return hoursAgo + ' hours ago'
+    if(hoursAgo === 1) return 'Updated 1 hour ago'
+    if(hoursAgo < 12)  return 'Updated ' + hoursAgo + ' hours ago'
 
     const daysAgo   = Math.ceil(hoursAgo/24)
-    if(daysAgo === 1) return '1 day ago'
-    if(daysAgo < 25)  return daysAgo + ' days ago'
+    if(daysAgo === 1) return 'Updated 1 day ago'
+    if(daysAgo < 25)  return 'Updated '+ daysAgo + ' days ago'
 
     const monthsAgo = Math.ceil(daysAgo/30)
     if(monthsAgo === 1) 
-        return '1 month ago';
-    return monthsAgo + ' months ago'
+        return 'Updated 1 month ago';
+    return 'Updated ' + monthsAgo + ' months ago'
 
 }
 

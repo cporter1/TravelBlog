@@ -16,8 +16,10 @@ export default function EditPost() {
         getPostByPostID(getIDfromParams())
             .then(async result => {
                 if(result) {
+                    const newArray = 
+                        result.body_array.map((element,index) =>{return {...element, id: Math.random()}})
                     setPublished(result.published)
-                    setBodyArray(result.body_array)
+                    setBodyArray(newArray)
                     postTitle.current = result.title
                 }
             })
@@ -32,20 +34,13 @@ export default function EditPost() {
     }
 
     function deleteSection(index) {
-        let newArray = [...bodyArray]
-        if(index === 0) {
-            console.log('shift')
-            newArray.shift()
-        } else {
-            newArray.splice(index , 1)
-        }
-        setBodyArray(newArray)
+        setBodyArray(array => array.filter((value , i) => {return index !== i}))
     }
 
     function mapArray(element , index) {
         if(element.type === 'image') {
             return (
-                <section className="post-section" key={index}>
+                <section className="post-section" key={element.id}>
                     <div className="img-wrapper">
                     {(element.url) ? 
                         <img className="uploaded-image" src={element.url} key={index} alt='hi' /> 
@@ -58,17 +53,17 @@ export default function EditPost() {
                     </div>
 
                     <button className="delete-section-button" id='delete-img-section'
-                        onClick={ e => {deleteSection(index)} }>Delete</button>
+                        onClick={ () => {deleteSection(index)} }>Delete</button>
                 </section>
             )
         }
         else if(element.type === 'text') {
             return (
-                <section className="post-section" key={index}>
+                <section className="post-section" key={element.id}>
                     <textarea className="post-text" defaultValue={element.text} 
                         onChange={(event) => {handleTextChange(event , index)}}/>
                     <button className="delete-section-button"
-                        onClick={event => {deleteSection(index)}}>Delete</button>
+                        onClick={() => {deleteSection(index)}}>Delete</button>
                 </section>
             )
         }

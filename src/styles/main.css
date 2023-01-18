@@ -28,10 +28,18 @@ body {
   flex-direction: column;
   display: flex;
   align-items: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 108px);
   width: 1100px;
   margin: 0 auto;
   background-color: var(--background-column);
+}
+
+.hor-divider {
+  width: 100%;
+  border: 0;
+  height: 5px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(227, 229, 231), rgba(0, 0, 0, 0));
+  margin-bottom: 1%;
 }
 
 /* Signin Page */
@@ -54,7 +62,7 @@ body {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 350px;
   background-color: var(--background-outdent);
   border: 3px solid gray;
 }
@@ -81,12 +89,11 @@ body {
 /* Navbar CSS */
 
 .navbar-container {
-    background-color: var(--navbar-color);
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
-    min-height: fit-content;
-    width: 100%;
+  background-color: var(--navbar-color);
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  width: 100%;
 }
 
 .link-container {
@@ -108,6 +115,11 @@ body {
 
 
   /* Blogs/Posts Headers  */
+
+  .title-header {
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
 
   .post-header {
     text-align: center;
@@ -149,6 +161,17 @@ body {
     row-gap: 10px;
     column-gap: 5px;
     grid-template-columns: 3fr 2fr 1fr;
+    justify-content: center;
+    margin-bottom: 2%;
+    width: 80%;
+  }
+
+  .create-post-header-wrapper {
+    font-size: x-large;
+    display: grid;
+    row-gap: 10px;
+    column-gap: 5px;
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
     margin-bottom: 2%;
     width: 80%;
@@ -228,7 +251,6 @@ body {
     width: 75%;
     border-radius: 5px;
     margin-top: 2%;
-    margin-bottom: 2%;
     padding: 10px;
     text-align: center;
   }
