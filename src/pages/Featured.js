@@ -54,7 +54,7 @@ export default function Home() {
         } else if(element['type'] === 'image') {
             return (
                 <div className="img-wrapper" key={index}>
-                    <img alt='' className="uploaded-images"
+                    <img alt='' className="uploaded-image"
                         src={`data:image/jpeg;base64,${encode(element.file.Body.data)}`}/>
                         <div>{element.text}</div>
                 </div>

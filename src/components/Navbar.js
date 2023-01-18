@@ -14,12 +14,12 @@ export default function Navbar() {
                 <section className="link-container">
                     <Link href='/'       className='navbar-link-item'>Featured Blog</Link>
                     <Link href='/blogs'  className='navbar-link-item'>All Blogs</Link>
+                    <Link href='/myblogs' className='navbar-link-item'  >My Blogs</Link>
                 </section>
                 
                 <section className="link-container">
                     <Link href='/myaccount' className='navbar-link-item'>My Account</Link>
-                    <Link href='/myblogs' className='navbar-link-item'  >My Blogs</Link>
-                    <div className='navbar-link-item' 
+                    <div className='navbar-link-item' style={{cursor:'pointer'}}
                         onClick={() => {removeSession(); setContext(null , null , null);
                             goTo('/signin')}}>Log Out</div>
                 </section>

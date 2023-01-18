@@ -27,7 +27,7 @@ body {
 .column-container {
   flex-direction: column;
   display: flex;
-  align-items:center;
+  align-items: center;
   min-height: 100vh;
   width: 1100px;
   margin: 0 auto;
@@ -132,10 +132,6 @@ body {
     margin: 5px;
   }
 
-  .post-title {
-    margin-top: 1%;
-  }
-
   .input-title {
     font-size: larger;
     text-align: center;
@@ -147,36 +143,70 @@ body {
     margin-bottom: 2%;
   }
 
+  .edit-post-header-wrapper {
+    font-size: x-large;
+    display: grid;
+    row-gap: 10px;
+    column-gap: 5px;
+    grid-template-columns: 3fr 2fr 1fr;
+    justify-content: center;
+    margin-bottom: 2%;
+    width: 80%;
+  }
+
+  .input-post-title {
+    font-size: x-large;
+    text-align: center;
+  }
+
+  .post-title {
+    margin-top: 1%;
+    margin-right: 1%;
+  }
+
+  .header-button {
+    min-width: 100%;
+    font-size: x-large;
+  }
+
   /* Blogs/Posts body CSS */
 
   .body-text {
     text-justify: inter-word;
-    padding: 5px;
-    margin: auto 30px;
+    padding: 10px;
+    margin: 0 30px;
   }
 
   .body-section {
     flex-direction: column;
     display: flex;
-    border-radius: 5px;
+    margin-right: 2.5%;
+    border-radius: 10px;
     background-color: rgb(220, 222, 245);
   }
 
   .post {
     display: grid;
-    grid-template-columns: 300px 800px;
+    grid-template-columns: 250px 850px;
     margin: 0px 0px 50px 0px;
-    /* margin-bottom: 5%; */
+    padding: 2% 0 2% 0;
     border-radius: 5px;
     background-color: var(--post-section);
   }
 
   .blog-banner {
     display: grid;
+    grid-template-rows: 3fr 1fr 1fr;
     padding: 10px;
     text-align: center;
     background-color: aqua;
     border-radius: 10px;
+  }
+
+  .blog-banner > h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .blogs-wrapper {
@@ -203,9 +233,15 @@ body {
     text-align: center;
   }
 
-  .uploaded-images {
-    border-radius: 5px;
+  .uploaded-image {
     max-width: 100%;
+  }
+
+  .edit-image-caption {
+    font-size: x-large;
+    width: 100%;
+    text-align: center;
+    overflow-wrap: break-word;
   }
 
   .create-section-container {
@@ -214,6 +250,7 @@ body {
 
   .section-container {
     margin-top: 1%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -223,10 +260,7 @@ body {
     flex-direction: column;
     display: flex;
     align-items: center;
-  }
-
-  .delete-section-button {
-    padding: 10px;
+    width: 100%;
   }
 
   .create-post-button {
@@ -235,9 +269,136 @@ body {
     width: 30%;
   }
 
+  .edit-delete-post-wrapper {
+    margin-top: 5px;
+  }
+
+  .edit-post-button , .delete-post-button {
+    padding: 4px;
+    border-radius: 5px;
+  }
+
+  .edit-post-button:hover , .delete-post-button:hover {
+    cursor: pointer;
+  }
+
+  .edit-post-button {
+    margin-right: 10px;
+  }
+
+  .post-section {
+    background-color: var(--post-section);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
+  .post-text {
+    font-size: x-large;
+    padding: 10px;
+  }
+
+  .delete-section-button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100px;
+  }
+
   /* My Account Page */
+
+  .acc-info-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 
   .featured-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+
+  .account-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  .account-grid > span {
+    padding: 5px;
+  }
+
+  #delete-img-section {
+    margin-left: 130px;
+  }
+
+  /* Confirm Popup */
+
+  .popup-container {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    background-color: #f37736;
+    width: 230px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -75%);
+    border-radius: 0.3rem;
+    padding: 1rem;
+    z-index: 5; /* Higher than the z-index of the background */
+  }
+  
+  .confirmation-text {
+    display: flex;
+    color: white;
+    margin: 0.5rem 0 2rem;
+    text-align: center;
+    line-height: 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .button-container {
+    display: flex;
+    margin-top: auto;
+    justify-content: space-between;
+  }
+  
+  .confirmation-button, delete-button {
+    display: inline-flex;
+    background-color: #cc0000;
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+  }
+  
+  .cancel-button {
+    padding: 0.7rem 1rem;
+    background-color: #999999;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .confirmation-button:hover {
+    background-color: red;
+    cursor: pointer;
+  }
+  
+  .cancel-button:hover {
+    background-color: #b2b2b2;
+    cursor: pointer;
+  }
+
+  .popup-bg {
+    position: fixed;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #202020;
+    opacity: 0.8;
+    overflow: hidden;
+    z-index: 2;
   }

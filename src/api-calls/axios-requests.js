@@ -158,3 +158,22 @@ export async function getFeaturedBlogAndPosts() {
             .catch()
     )
 }
+
+export async function deletePost(postID) {
+    const data = {postID: postID}
+    axios.post('/posts/deletepost' , data)
+        .then(async result => {
+            if(result.status === 200) {
+                return true
+            }
+            else 
+                return false
+        }) 
+        .catch()
+}
+
+export async function getAllAccounts() {
+    return axios.get('/accounts/allaccounts')
+        .then(async result => {return result.data})
+        .catch()
+}

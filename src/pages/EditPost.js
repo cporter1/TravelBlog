@@ -4,6 +4,7 @@ import { getIDfromParams } from "../models/URLparams";
 import { encode } from "base64-arraybuffer"
 import CreateSection from "../components/CreateSection";
 import SavePost from "../components/SavePost";
+import ConfirmPopup from "../components/ConfirmPopup";
 
 export default function EditPost() {
 
@@ -14,7 +15,6 @@ export default function EditPost() {
     useEffect(() => {
         getPostByPostID(getIDfromParams())
             .then(async result => {
-                // console.log('result', result)
                 if(result) {
                     setPublished(result.published)
                     setBodyArray(result.body_array)
@@ -33,7 +33,12 @@ export default function EditPost() {
 
     function deleteSection(index) {
         let newArray = [...bodyArray]
-        newArray.splice(index , 1)
+        if(index === 0) {
+            console.log('shift')
+            newArray.shift()
+        } else {
+            newArray.splice(index , 1)
+        }
         setBodyArray(newArray)
     }
 
@@ -41,15 +46,18 @@ export default function EditPost() {
         if(element.type === 'image') {
             return (
                 <section className="post-section" key={index}>
+                    <div className="img-wrapper">
                     {(element.url) ? 
-                        <img className="uploaded-images" src={element.url} key={index} alt='hi' /> : 
-                        <img className="uploaded-images" alt=''
+                        <img className="uploaded-image" src={element.url} key={index} alt='hi' /> 
+                        : 
+                        <img className="uploaded-image" alt=''
                             src={`data:image/jpeg;base64, ${encode(element.file.Body.data)}`}/> 
                     }
+                        <textarea className="edit-image-caption" defaultValue={element.text}
+                            onChange={(event => { handleTextChange(event , index) } )}/>
+                    </div>
 
-                    <input className="image-caption" defaultValue={element.text}
-                        onChange={(event => { handleTextChange(event , index) } )}/>
-                    <button className="delete-section-button" 
+                    <button className="delete-section-button" id='delete-img-section'
                         onClick={ e => {deleteSection(index)} }>Delete</button>
                 </section>
             )
@@ -57,9 +65,9 @@ export default function EditPost() {
         else if(element.type === 'text') {
             return (
                 <section className="post-section" key={index}>
-                    <textarea defaultValue={element.text} 
+                    <textarea className="post-text" defaultValue={element.text} 
                         onChange={(event) => {handleTextChange(event , index)}}/>
-                    <button className="delete-section-button" 
+                    <button className="delete-section-button"
                         onClick={event => {deleteSection(index)}}>Delete</button>
                 </section>
             )
@@ -68,32 +76,42 @@ export default function EditPost() {
 
     return (
         <div className="column-container">
-            <h1 className="post-title">Post Title:</h1>
-            <input className="input-post-title" defaultValue={postTitle.current}
-                ref={postTitle} /> 
-            <br/>
-            {published ? 
-                <div>
-                    <label>This post is visible to other users.</label> 
-                    <button onClick={() => {changePublishPostStatus(getIDfromParams()); 
-                        setPublished(current => !current)}}>
-                        Make this post private?</button> 
-                </div> 
-                : 
-                <div>
-                    <label>This post is not visible to other users.</label>
-                    <button onClick={() => {changePublishPostStatus(getIDfromParams());
-                        setPublished(current => !current)}}>
-                        Publish this post?</button> 
-                </div>
-            }
-            <br/>
+            <div className="post-content">
+                <h1 style={{marginTop: '1%', marginBottom: '1%'}}>Post Editor</h1>
+                <header className="edit-post-header-wrapper">
+                        <div className="post-title">Post Title:</div>
+                        <input className="input-post-title" defaultValue={postTitle.current}
+                            ref={postTitle} />
+                        <ConfirmPopup ID='pushTitle' bgID='pushTitlebg'
+                            handleTask={() => console.log('worked')}
+                            buttonClass='header-button'
+                            buttonText='Save Title'
+                            confirmText='Are you sure you want to save the title?'/>
+                    {published ? 
+                        <>
+                            <label>This post IS visible to other users.</label> 
+                            <button style={{width: '50%', }} onClick={() => {changePublishPostStatus(getIDfromParams())
+                                setPublished(current => !current)}}
+                                className='header-button'>
+                                Make this post private?</button> 
+                        </> 
+                        : 
+                        <>
+                            <label>This post is NOT visible to other users.</label>
+                            <button onClick={() => {changePublishPostStatus(getIDfromParams());
+                                setPublished(current => !current)}}
+                                className='header-button'>
+                                Publish this post?</button> 
+                        </>
+                    }
 
-            <div>{bodyArray?.map(mapArray)}</div>
+                </header>
+                <div className="section-container">{bodyArray?.map(mapArray)}</div>
 
-            <CreateSection postArray={bodyArray} setPostArray={setBodyArray}/>
-            <SavePost state={'update'} bodyArray={bodyArray} postID={getIDfromParams()} 
-                    title={postTitle?.current}/>
+                <CreateSection postArray={bodyArray} setPostArray={setBodyArray}/>
+                <SavePost state={'update'} bodyArray={bodyArray} postID={getIDfromParams()} 
+                        title={postTitle?.current}/>
+            </div>
         </div>
     )
 }

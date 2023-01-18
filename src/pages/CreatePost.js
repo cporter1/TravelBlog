@@ -20,7 +20,6 @@ export default function CreatePost() {
     }
 
     function deleteSection(index) {
-
         let newArray = [...postArray]
         newArray.splice(index , 1)
         setPostArray(newArray)
@@ -57,19 +56,19 @@ export default function CreatePost() {
                 <input className="input-post-title" 
                     ref={postTitle}/> <br/>
 
-            {published ? 
-                <div>
-                    <label>This post will be visible to other users. </label> 
-                    <button onClick={() => setPublished(current => !current)}>
-                        Make this post private upon save? </button> 
-                </div> 
-                : 
-                <div>
-                    <label>This post will not visible to other users. </label>
-                    <button onClick={() => setPublished(current => !current)}>
-                        Publish this post upon save?</button> 
-                </div>
-            }
+                {published ? 
+                    <div>
+                        <label>This post will be visible to other users. </label> 
+                        <button onClick={() => setPublished(current => !current)}>
+                            Make this post private upon save? </button> 
+                    </div> 
+                    : 
+                    <div>
+                        <label>This post will not visible to other users. </label>
+                        <button onClick={() => setPublished(current => !current)}>
+                            Publish this post upon save?</button> 
+                    </div>
+                }
 
                 <div className="section-container">
                     {postArray.map(mapArray)}

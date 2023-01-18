@@ -1,13 +1,14 @@
 import { useEffect, useReducer} from "react"
 import { getPostsByBlogID , getBlogByBlogID ,
-         saveBlogTravelDates, saveBlogTitle } from "../api-calls/axios-requests"
+         saveBlogTravelDates, saveBlogTitle ,
+         deletePost } from "../api-calls/axios-requests"
 import { getIDfromParams } from "../models/URLparams.js"
 import { goTo } from "../models/Navigation"
 import { dateHandler } from "../models/TimeFormat"
 import { encode } from "base64-arraybuffer"
 import { useUserContext } from "../models/UserContext"
 import { timeAgo } from "../models/TimeFormat"
-
+import ConfirmPopup from "../components/ConfirmPopup"
 
 export default function BlogView() {
 
@@ -16,12 +17,17 @@ export default function BlogView() {
         useReducer(reduceFetches , {blog : {} , postArray: [], loading: true})
 
     function reduceFetches(state , action) {
-            return {
-                postArray : action.posts,
-                blog      : action.blog,
-                blogOwner : username === action.blog?.author,
-                loading : false
-            }
+            if(action.initialize)
+                return {
+                    postArray : action.posts,
+                    blog      : action.blog,
+                    blogOwner : username === action.blog?.author,
+                    loading : false
+                }
+            else if(action.deletePost)
+                return {...state,
+                    postArray: action.posts
+                }
         }
 
     useEffect(() => {
@@ -30,10 +36,20 @@ export default function BlogView() {
             getBlogByBlogID( getIDfromParams() ) ])
             .then(async result => {
                 setContent({blog: result[1] , 
-                    posts: (result[0] ? result[0] : []) });      
+                    posts: (result[0] ? result[0] : []) , initialize: true });      
             })
     },[])
 
+    function handleDeletePost(postID , index) {
+        deletePost(postID)
+        setContent( {deletePost: true , posts: deletePostState(index)} )
+    }
+
+    function deletePostState(index) {
+        let newArray = [...bodyState.postArray]
+        newArray.splice(index , 1)
+        return newArray
+    }
 
     function submitNewTitle() {
         saveBlogTitle(bodyState.blog.title , bodyState.blog.id)
@@ -49,8 +65,17 @@ export default function BlogView() {
                     <h3>{element.title} </h3>
                     <h6>Posted {dateHandler(element.time_posted)}</h6>
                     {bodyState.blogOwner ? 
-                        <button onClick={() => goTo(`/editpost/?${element.id}`)}>
-                            Edit Post</button> 
+                        <div className="edit-delete-post-wrapper">
+                            <button className="edit-post-button" 
+                                onClick={() => goTo(`/editpost/?${element.id}`)}>
+                                Edit Post</button> 
+                            <ConfirmPopup ID='deletePost' bgID='pgDeletePost' 
+                                buttonClass='delete-post-button' 
+                                buttonText='Delete Post' 
+                                handleTask={() => handleDeletePost(element.id , index)}
+                                confirmText='Are you sure you want to delete this post?'
+                                />
+                        </div>
                     : null}
                 </header>
                 <section className="body-section">
@@ -70,9 +95,9 @@ export default function BlogView() {
         } else if(element['type'] === 'image') {
             return (
                 <section className="img-wrapper" key={index}>
-                    <img alt='' className="uploaded-images"
+                    <img alt='' className="uploaded-image"
                         src={`data:image/jpeg;base64, ${encode(element.file.Body.data)}`}/>
-                        <div>{element.text}</div>
+                        <div className="edit-image-caption">{element.text}</div>
                 </section>
             )
         } else {console.error('function postSectionMap: invalid array')}
@@ -90,15 +115,19 @@ export default function BlogView() {
                         <input className="input-title" type='text' 
                             defaultValue={bodyState.blog?.title}
                             onChange={(e) => bodyState.blog.title = e.target.value}/>
-                        <button onClick={() => submitNewTitle()} >Save Title</button>
+                        <ConfirmPopup ID='title' bgID='bgtitle' handleTask={submitNewTitle}
+                            buttonClass='new'
+                            buttonText='Save Title' 
+                            confirmText='Are you sure you want to save the title?'/>
                     </div>
                     <div className="edit-traveldates-wrapper">
                         <label>Travel Dates: </label>
                         <input className="input-title" type='text'
                             defaultValue={bodyState.blog?.travel_dates}
                             onChange={(e) => bodyState.blog.travel_dates = e.target.value}/>
-                        <button onClick={() => submitNewTravelDates()}>
-                            Save Travel Dates</button>
+                        <ConfirmPopup ID='dates' bgID="bgDates" handleTask={submitNewTravelDates}
+                            buttonText='Save Travel Dates' 
+                            confirmText='Are you sure you want to save the travel dates?'/>
                     </div>
                     <label>Updated {timeAgo(bodyState.blog.last_updated)}</label>
                     <button className="create-post-button" 

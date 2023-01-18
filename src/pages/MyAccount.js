@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from "react"
-import { getAllBlogs , featureBlog} from "../api-calls/axios-requests"
+import { getAllBlogs , featureBlog,
+        getAllAccounts} from "../api-calls/axios-requests"
 import Link from "../components/Link"
 import { useUserContext } from "../models/UserContext"
 // import {getAll}
@@ -8,7 +9,7 @@ export default function MyAccount() {
 
     const {email, username , accRole} = useUserContext()
     const [blogsState , setBlogState] = 
-        useReducer(reduceState , {blogsArray : [] , loading: true})
+        useReducer(reduceState , {blogsArray : [], accArray: [] , loading: true})
 
     function reduceState(state , action) {
         if(action.type === 'updateFeatured') {
@@ -18,16 +19,16 @@ export default function MyAccount() {
         } else {
             return {
                 blogsArray: action.blogsArray,
+                accArray: action.accArray,
                 loading : false
             }
         }
     }
 
     useEffect(() => {
-        getAllBlogs()
+        Promise.all([getAllBlogs() , getAllAccounts()])
             .then(async result => {
-                // console.log(result)
-                setBlogState({blogsArray: result})
+                setBlogState({blogsArray: result[0] , accArray: result[1]})
             })
     },[])
 
@@ -40,11 +41,10 @@ export default function MyAccount() {
 
     function AccountInfo({username , email}) {
         return (
-            <ul>
-                <li> <span>Username: {username}</span> </li>
-                <li> <span>email: {email}</span> </li>
-                <li> <span>Privledges: {accRole}</span> </li>
-            </ul>
+            <section className="acc-info-wrapper">
+                <span>Username: {username}</span>
+                <span>email: {email}</span>
+            </section>
         )
     }
 
@@ -60,18 +60,31 @@ export default function MyAccount() {
             </section>
         )
     }
+    function mapAccounts(element , index) {
+        return (
+            <section className="account-grid" key={index}>
+                <span>{element.username}</span>
+                <span>{element.email}</span>
+                <span>{element.role}</span>
+            </section>
+        )
+
+    }
 
     if(accRole === 'admin') {
         return (
             <div className="column-container">
                 <Link style={{marginTop: '10px'}} href='/createaccount' className='navbar-link-item'>
                     Create Account</Link>
-                <ul>
-                    <AccountInfo username={username} email={email}/>
-                </ul>
+                <AccountInfo username={username} email={email}/>
                 <br/>
+                <h2>Blogs</h2><br/>
                 <ul>
                     {blogsState.blogsArray?.map(mapFeaturedStatus)}
+                </ul><br/>
+                <h2>Accounts</h2><br/>
+                <ul>
+                    {blogsState.accArray?.map(mapAccounts)}
                 </ul>
             </div>
         )
