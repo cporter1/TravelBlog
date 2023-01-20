@@ -6,6 +6,8 @@ import CreateSection from "../components/CreateSection";
 import SavePost from "../components/SavePost";
 import ConfirmPopup from "../components/ConfirmPopup";
 
+import ParagraphInput from "../components/ParagraphInput";
+
 export default function EditPost() {
 
     const [published , setPublished]  = useState()
@@ -17,7 +19,8 @@ export default function EditPost() {
             .then(async result => {
                 if(result) {
                     const newArray = 
-                        result.body_array.map((element,index) =>{return {...element, id: Math.random()}})
+                        result.body_array.map((element,index) =>
+                        {return {...element, id: Math.random()}})
                     setPublished(result.published)
                     setBodyArray(newArray)
                     postTitle.current = result.title
@@ -60,8 +63,8 @@ export default function EditPost() {
         else if(element.type === 'text') {
             return (
                 <section className="post-section" key={element.id}>
-                    <textarea className="post-text" defaultValue={element.text} 
-                        onChange={(event) => {handleTextChange(event , index)}}/>
+                    <ParagraphInput className="post-text" defaultValue={element.text} 
+                        onKeyDown={(event) => {handleTextChange(event , index)}}/>
                     <button className="delete-section-button"
                         onClick={() => {deleteSection(index)}}>Delete</button>
                 </section>

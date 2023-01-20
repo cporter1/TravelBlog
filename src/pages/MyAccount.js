@@ -42,8 +42,8 @@ export default function MyAccount() {
     function AccountInfo({username , email}) {
         return (
             <section className="acc-info-wrapper">
-                <span>Username: {username}</span>
-                <span>email: {email}</span>
+                <span>Username: </span> <span> {username}</span>
+                <span>email:</span> <span> {email}</span>
             </section>
         )
     }
@@ -83,7 +83,7 @@ export default function MyAccount() {
                     {blogsState.blogsArray?.map(mapFeaturedStatus)}
                 </ul><br/>
                 <h2>Accounts</h2><br/>
-                <ul>
+                <ul style={{marginBottom: '2%'}}>
                     {blogsState.accArray?.map(mapAccounts)}
                 </ul>
             </div>

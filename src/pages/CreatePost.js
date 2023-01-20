@@ -62,13 +62,13 @@ export default function CreatePost() {
 
                     {published ? 
                         <>
-                            <label>This post WILL be visible to other users. </label> 
+                            <label style={{textAlign: 'center'}}>This post WILL be visible to other users. </label> 
                             <button style={{fontSize: 'x-large'}} onClick={() => setPublished(current => !current)}>
                                 Make this post private upon save? </button> 
                         </> 
                         : 
                         <>
-                            <label>This post will NOT visible to other users. </label>
+                            <label style={{textAlign: 'center'}}>This post will NOT visible to other users. </label>
                             <button style={{fontSize: 'x-large'}} onClick={() => setPublished(current => !current)}>
                                 Publish this post upon save?</button> 
                         </>

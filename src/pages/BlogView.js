@@ -88,7 +88,7 @@ export default function BlogView() {
     function bodyMap(element , index) {
         if(element['type'] === 'text') { // textbox section
             return (
-                <section className="body-text" key={index}>
+                <section style={{whiteSpace: 'pre-wrap'}} className="body-text" key={index}>
                     {element.text}
                 </section>
             )

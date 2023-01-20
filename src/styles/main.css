@@ -3,24 +3,32 @@
     padding: 0;
     margin: 0;
 }
+ html {
+  overflow-y:scroll;
+ }
 
 #root {
-    --background-base: rgb(221, 231, 200);
-    --background-column: rgb(133, 103, 48);
-    --background-outdent: rgb(247, 230, 247);
-    --post-section: rgb(0, 255, 255);
-    --navbar-color:  rgb(89, 89, 149);
-    --img-wrapper-color : rgb(100,100,100)
+  --base-image: url(../images/base-img.jpg);
+  --background-base: rgb(221, 231, 200);
+  --background-column: linear-gradient(to right bottom, rgba(249,211,142, .5), rgba(230,207,133, .1));
+  --background-outdent: rgba(0, 255, 255, .6);
+  --post-section: rgba(0, 255, 255, .6);
+  --navbar-img:  linear-gradient(to right bottom, rgba(0, 150, 255, .7), rgba(0, 255, 255, .5));
+  --img-wrapper-color: rgba(158, 124, 83);
+
+  background-image: var(--base-image);
+  background-position: center;
+  background-size: cover;
 }
 
 body {
+  color: #000;
   font-size:x-large;
 }
 
 .main-container {
-  background-color: var(--background-base);
   min-height: 100vh;
-  min-width: 100%;
+  min-width: calc(100vw- 100%);
 }
 
 
@@ -31,14 +39,14 @@ body {
   min-height: calc(100vh - 108px);
   width: 1100px;
   margin: 0 auto;
-  background-color: var(--background-column);
+  background-image: var(--background-column);
 }
 
 .hor-divider {
   width: 100%;
   border: 0;
   height: 5px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(227, 229, 231), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0,0,0,.4), rgba(0, 0, 0, 0));
   margin-bottom: 1%;
 }
 
@@ -64,6 +72,7 @@ body {
   flex-direction: column;
   width: 350px;
   background-color: var(--background-outdent);
+  border-radius: 10px;
   border: 3px solid gray;
 }
 
@@ -89,11 +98,12 @@ body {
 /* Navbar CSS */
 
 .navbar-container {
-  background-color: var(--navbar-color);
+  background-image: var(--navbar-img);
+  background-position: center;
+  background-size: cover;
   display: flex;
   justify-content: space-around;
   list-style: none;
-  width: 100%;
 }
 
 .link-container {
@@ -103,12 +113,12 @@ body {
   }
 
 .navbar-link-item {
-    color: white;
+    color: black;
     margin: 0px 10px 0px 10px;
     font-weight: bold;
     font-size: x-large;
     text-decoration: none;
-    padding: 40px 40px 40px 40px;
+    padding: 40px 25px;
     white-space: nowrap;
     border-radius: 13px;
   }
@@ -183,8 +193,9 @@ body {
   }
 
   .post-title {
+    text-align: center;
     margin-top: 1%;
-    margin-right: 1%;
+    margin-bottom: 1%;
   }
 
   .header-button {
@@ -195,8 +206,7 @@ body {
   /* Blogs/Posts body CSS */
 
   .body-text {
-    text-justify: inter-word;
-    padding: 10px;
+    padding: 15px 10px;
     margin: 0 30px;
   }
 
@@ -205,7 +215,7 @@ body {
     display: flex;
     margin-right: 2.5%;
     border-radius: 10px;
-    background-color: rgb(220, 222, 245);
+    background-color: var(--body-section-base)
   }
 
   .post {
@@ -213,8 +223,9 @@ body {
     grid-template-columns: 250px 850px;
     margin: 0px 0px 50px 0px;
     padding: 2% 0 2% 0;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: var(--post-section);
+    opacity: 1;
   }
 
   .blog-banner {
@@ -222,8 +233,10 @@ body {
     grid-template-rows: 3fr 1fr 1fr;
     padding: 10px;
     text-align: center;
-    background-color: aqua;
+    background-color: var(--post-section);
     border-radius: 10px;
+    border: solid 2px rgba(0,00,0, 1);
+    cursor: pointer;
   }
 
   .blog-banner > h3 {
@@ -251,6 +264,7 @@ body {
     width: 75%;
     border-radius: 5px;
     margin-top: 2%;
+    margin-right: 3%;
     padding: 10px;
     text-align: center;
   }
@@ -332,8 +346,16 @@ body {
   /* My Account Page */
 
   .acc-info-wrapper {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 10px;
+    text-align: center;
+    margin-top: 10%;
+    background-color: var(--img-wrapper-color);
+    padding: 40px;
+    border-radius: 10px;
+    border: 2px black solid;
   }
 
   .featured-grid {
