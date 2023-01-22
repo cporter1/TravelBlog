@@ -40,7 +40,20 @@ body {
   width: 1100px;
   margin: 0 auto;
   background-image: var(--background-column);
+
+  animation: fadeIn ease-in-out .8s;
+  animation-fill-mode: forwards;
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 10%;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 
 .hor-divider {
   width: 100%;
@@ -50,6 +63,27 @@ body {
   margin-bottom: 1%;
 }
 
+/* Loading Component */
+.loading-container {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid var(--post-section); /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 /* Signin Page */
 
 .signin-container {
@@ -63,7 +97,6 @@ body {
   margin: 0 auto;
   background-color: var(--background-column);
 }
-
 
 .signin-outdent {
   margin-bottom: 20%;
@@ -194,8 +227,8 @@ body {
 
   .post-title {
     text-align: center;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
   }
 
   .header-button {

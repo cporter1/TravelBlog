@@ -17,20 +17,7 @@ import './styles/main.css'
 
 import UserContextProvider from './models/UserContext'
 
-function notSignedIn() {
-  return !(sessionStorage.getItem('username') !== null)
-}
-
 function App() {
-  if(notSignedIn()) {
-    return (
-      <UserContextProvider>
-        <div className='main-container'>
-          <Route path='*' component = {<SignIn  />} />
-        </div>
-    </UserContextProvider>
-  );
-  } else {
   return (
     <UserContextProvider>
       <div className='main-container'>
@@ -46,10 +33,10 @@ function App() {
         <Route path='/blogs/'        component = {<BlogView/>}   />
         <Route path='/createaccount' component = {<CreateAccount/>} />
         <Route path='/editpost/'     component = {<EditPost/>}   />
+        <Route notSignedIn={true} component = {<SignIn  />} />
       </div>
     </UserContextProvider>
   );
-  }
 }
 
 export default App;

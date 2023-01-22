@@ -104,7 +104,9 @@ export default function BlogView() {
     }
 
     if(bodyState.loading) {
-        return <div>loading...</div>
+        return  <div className="loading-container">
+                    <div className="loader"/>
+                </div>
     }
     else if(bodyState.blogOwner) { // this is your blog
         return (

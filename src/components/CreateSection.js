@@ -18,7 +18,7 @@ export default function CreateSection({setPostArray, postArray}) {
                 onClick={event => {
                     post.addTextbox(setPostArray, postArray)
                 }}>
-                Add Textbox
+                New Paragraph
             </button>
         </div>
     )

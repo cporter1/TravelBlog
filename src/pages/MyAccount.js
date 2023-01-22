@@ -70,8 +70,12 @@ export default function MyAccount() {
         )
 
     }
-
-    if(accRole === 'admin') {
+    if(blogsState.loading) {
+        return  <div className="loading-container">
+                    <div className="loader"/>
+                </div>
+    }
+    else if(accRole === 'admin') {
         return (
             <div className="column-container">
                 <Link style={{marginTop: '10px'}} href='/createaccount' className='navbar-link-item'>

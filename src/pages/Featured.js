@@ -62,7 +62,12 @@ export default function Home() {
         } else {console.error('function postSectionMap: invalid array')}
     }
 
-    if(bodyState.loading) {return <div>loading...</div>;}
+    // if(bodyState.loading) {return <div>loading...</div>;}
+    if(bodyState.loading) {
+        return  <div className="loading-container">
+                    <div className="loader"/>
+                </div>
+    }
     else { 
         return (
             <div className="column-container">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function Route({path , children, component}) {
+export default function Route({path , children, component, notSignedIn}) {
 
     const [currentPath, setCurrentPath] = useState(window.location.pathname)
 
@@ -27,7 +27,9 @@ export default function Route({path , children, component}) {
         }
     }, [])
 
-    if (path === '*') return component;
 
-    return currentPath === path ? component : null
+    if(notSignedIn && !sessionStorage.getItem('username') )
+        return component;
+
+    return (currentPath === path && sessionStorage.getItem('username')) ? component : null
 }

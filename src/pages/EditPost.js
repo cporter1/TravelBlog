@@ -75,7 +75,7 @@ export default function EditPost() {
     return (
         <div className="column-container">
             <div className="post-content">
-                <h1 style={{marginTop: '1%', marginBottom: '1%'}}>Post Editor</h1>
+                <h1 className="post-title">Post Editor</h1>
                 <header className="edit-post-header-wrapper">
                         <div className="post-title">Post Title:</div>
                         <input className="input-post-title" defaultValue={postTitle.current}
