@@ -2,27 +2,31 @@ export default function Post() {
 
     this.addTextbox = function(stateFunction , array) {
 
-        stateFunction([...array, 
-            {
-                type: 'text',
-                text: '',
-                id: Math.random()
-            }
-        ])
+        stateFunction({ 
+            body: [...array, 
+                {
+                    type: 'text',
+                    text: '',
+                    id: Math.random()
+                }],
+            changeBodyArray: true
+        })
     }
 
     this.addImage = function(file , stateFunction , array) {
         if (file == null) return;
 
-        stateFunction([...array,  
-            {   
-                type: 'image',
-                text: '',
-                data: file,
-                url: URL.createObjectURL(file),
-                id: Math.random() 
-            } ]
-        )
+        stateFunction({
+            body: [...array,  
+                {   
+                    type: 'image',
+                    text: '',
+                    data: file,
+                    url: URL.createObjectURL(file),
+                    id: Math.random() 
+                }],
+            changeBodyArray: true
+        })
     }
 
     this.encodePostArray = function(inputArray) {

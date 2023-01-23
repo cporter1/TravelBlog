@@ -1,28 +1,43 @@
-import React, {useRef, useState } from "react"
+import React, {useReducer, useRef, useState } from "react"
 import CreateSection from "../components/CreateSection";
 import SavePost from "../components/SavePost";
 import { getIDfromParams } from "../models/URLparams";
+import ParagraphInput from "../components/ParagraphInput";
 
 export default function CreatePost() {
 
     // TODO: see if you can set text without rerender
 
-    const [postArray, setPostArray]  = useState([]);
+    // const [postArray, setPostArray]  = useState([]);
     const postTitle                  = useRef('')
-    const [published , setPublished] = useState(false) 
+    const [published , setPublished] = useState(false)
+    
+    const [postState , setPostState] =
+        useReducer(reduceState , {bodyArray:[] , published: false, postTitle:''})
 
-    function handleTextChange(event , index) {
-        let newArray = [...postArray]
+    function reduceState(state , action) {
+        if(action.changeBodyArray)
+            return {...state,
+                bodyArray: action.body,
+            }
+        else if(action.setPublished)
+            return {...state,
+                published: !state.published
+        }
+    }
+
+    function handleTextChange(value , index) {
+        console.log(value , index)
+        let newArray = [...postState.bodyArray]
         let oldElement = {...newArray[index]}
-        oldElement.text = event.target.value
+        oldElement.text = value
         newArray[index] = oldElement
-        setPostArray(newArray)
+        setPostState({changeBodyArray: true , body: newArray})
     }
 
     function deleteSection(index) {
-        let newArray = [...postArray]
-        newArray.splice(index , 1)
-        setPostArray(newArray)
+        setPostState({body: postState.bodyArray.filter((value , i) => {return index !== i}),
+            changeBodyArray:true})
     }
 
     function mapArray(element , index) {
@@ -43,7 +58,8 @@ export default function CreatePost() {
         else if(element.type === 'text') {
             return (
                 <section className="post-section" key={element.id}>
-                    <textarea className="post-text" onChange={(event) => {handleTextChange(event , index)}}/>
+                    <ParagraphInput className="post-text" defaultValue={element.text} 
+                        index={index} onChange={handleTextChange}/>
                     <button className="delete-section-button" 
                         onClick={event => {deleteSection(index)}}>Delete</button>
                 </section>
@@ -62,24 +78,24 @@ export default function CreatePost() {
 
                     {published ? 
                         <>
-                            <label style={{textAlign: 'center'}}>This post WILL be visible to other users. </label> 
+                            <label className="publish-label">This post WILL be visible to other users</label> 
                             <button style={{fontSize: 'x-large'}} onClick={() => setPublished(current => !current)}>
                                 Make this post private upon save? </button> 
                         </> 
                         : 
                         <>
-                            <label style={{textAlign: 'center'}}>This post will NOT visible to other users. </label>
+                            <label className="publish-label">This post will NOT visible to other users</label>
                             <button style={{fontSize: 'x-large'}} onClick={() => setPublished(current => !current)}>
                                 Publish this post upon save?</button> 
                         </>
                     }
                 </header>
                 <div className="section-container">
-                    {postArray.map(mapArray)}
+                    {postState.bodyArray.map(mapArray)}
                 </div>
 
-                <CreateSection postArray={postArray} setPostArray={setPostArray}/>
-                <SavePost state={'new'} bodyArray={postArray} blogID={getIDfromParams()} 
+                <CreateSection postArray={postState.bodyArray} setPostArray={setPostState}/>
+                <SavePost state={'new'} bodyArray={postState.bodyArray} blogID={getIDfromParams()} 
                     title={postTitle?.current.value} published={published}/>
             </div>
         </div>

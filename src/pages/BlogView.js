@@ -89,7 +89,7 @@ export default function BlogView() {
         if(element['type'] === 'text') { // textbox section
             return (
                 <section style={{whiteSpace: 'pre-wrap'}} className="body-text" key={index}>
-                    {element.text}
+                    {paragraphsToArray(element.text).map(paragraphMap)}
                 </section>
             )
         } else if(element['type'] === 'image') {
@@ -102,6 +102,37 @@ export default function BlogView() {
             )
         } else {console.error('function postSectionMap: invalid array')}
     }
+    function paragraphsToArray(text) {
+        let output = []
+        for(let i = 0; i < text.length; i++) {
+
+            if((text[i] === '<') && (text[i+1] === 'p') && (text[i+2] === '>')) { //found starting tag
+
+                for(let j = i+3; j < text.length; j++) { // looking for end tag
+
+                    if((text[j] === '<') && (text[j+1] === '/') && (text[j+2] === 'p') && 
+                        (text[j+3] === '>')) {
+                        output.push(text.substring(i+3 , j))
+                        i= j+4
+                        }
+                }
+            }
+        }
+        return output
+    }
+    function paragraphMap(element , index) {
+        if(element=== '<br>') 
+            return (
+                <br/>
+            )
+        else {  
+            return  <p id={index}>
+                        {element}
+                    </p>
+        
+        }
+    }
+
 
     if(bodyState.loading) {
         return  <div className="loading-container">

@@ -21,8 +21,7 @@ export default function MyBlogs() {
     useEffect(() => {
         getMyBlogs(username)
             .then(async result => {
-                setBlogsState({blogsArray: result})
-                // setBlogArray( result )
+                if(result) setBlogsState({blogsArray: result});
             })
     },[])
     if(blogsState.loading) {

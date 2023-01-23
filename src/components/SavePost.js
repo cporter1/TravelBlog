@@ -2,6 +2,7 @@ import { useUserContext} from '../models/UserContext.js'
 import {createPost ,savePostFormData} from '../api-calls/axios-requests'
 import Post from '../models/Post.js'
 import {goTo} from '../models/Navigation.js'
+import ConfirmPopup from './ConfirmPopup.js'
 
 
 export default function SavePost({bodyArray , blogID , title , state , postID, published}) {
@@ -22,11 +23,17 @@ export default function SavePost({bodyArray , blogID , title , state , postID, p
     }
 
     return (
-        <div>
-            <button disabled={ !(title && bodyArray[0]) } 
+        <div className='save-post-wrapper'>
+            <ConfirmPopup ID='save-post' bgID='save-post-bg'
+                handleTask={() => {pushPostArray()}} 
+                buttonClass='save-post-button'
+                buttonText={state === 'new' ? 'Create New Post' : 'Update Post'}
+                confirmText='Are you sure you want to save this post?'/>
+
+            {/* <button className='save-post-button' 
                 onClick={ () => { pushPostArray() } } >
-                {state === 'new' ? 'Create New Post' : 'Update Post'}
-            </button>
+                    {state === 'new' ? 'Create New Post' : 'Update Post'}
+            </button> */}
         </div>
     )
 }
