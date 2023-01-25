@@ -107,7 +107,7 @@ export default function EditPost() {
                     <div className="post-content">
                         <h1 className="post-title">Post Editor</h1>
                         <header className="edit-post-header-wrapper">
-                            <div className="post-title">Post Title:</div>
+                            <div className="publish-label">Post Title:</div>
                             <input className="input-post-title" defaultValue={postState.postTitle}
                                 onChange={(event) => 
                                     {setPostState({setTitle: true , postTitle: event.target.value})}}/>
@@ -130,7 +130,6 @@ export default function EditPost() {
                                 </>
                             }
                         </header>
-                        <div className="hor-divider"/>
                         <div className="section-container">
                             {postState.bodyArray?.map(mapArray)}
                         </div>

@@ -6,12 +6,8 @@ import ParagraphInput from "../components/ParagraphInput";
 
 export default function CreatePost() {
 
-    // const [postArray, setPostArray]  = useState([]);
-    // const postTitle                  = useRef('')
-    // const [published , setPublished] = useState(false)
-    
     const [postState , setPostState] =
-        useReducer(reduceState , {bodyArray:[] , published: false, loadeding: true, postTitle:''})
+        useReducer(reduceState , {bodyArray:[] , published: false, postTitle:''})
 
     function reduceState(state , action) {
         if(action.changeBodyArray)
@@ -79,29 +75,28 @@ export default function CreatePost() {
             <div className="post-content">
                 <h1 className="post-title">Create Post</h1>
                 <header className="create-post-header-wrapper">
-                    <div className="post-title">Post Title:</div>
+                    <div className="publish-label">Post Title:</div>
                     <input className="input-post-title" 
                         onChange={(event) => setPostState({setTitle: true, postTitle: event.target.value})}/>
 
                     {postState.published ? 
                         <>
                             <label className="publish-label">
-                                This post WILL be visible to other users</label> 
-                            <button style={{fontSize: 'x-large', padding: '5px'}} 
+                                This post WILL be visible to other users:</label> 
+                            <button style={{fontSize: 'x-large', padding: '2px'}} 
                                 onClick={() => setPostState({setPublished: true})}>
                                 Make this post private upon save? </button> 
                         </> 
                         : 
                         <>
                             <label className="publish-label">
-                                This post will NOT visible to other users</label>
-                            <button style={{fontSize: 'x-large', padding: '5px'}} 
+                                This post will NOT visible to other users:</label>
+                            <button style={{fontSize: 'x-large', padding: '2px'}} 
                                 onClick={() => setPostState({setPublished: true})}>
                                 Publish this post upon save?</button> 
                         </>
                     }
                 </header>
-                <div className="hor-divider"/>
                 <div className="section-container">
                     {postState.bodyArray.map(mapArray)}
                 </div>

@@ -147,7 +147,7 @@ export default function BlogView() {
             <div className="column-container">
                 <header className="blog-header-container">
                     <div className="edit-title-wrapper">
-                        <label>Title: </label>
+                        <label className="title-label">Title: </label>
                         <input className="input-title" type='text' 
                             defaultValue={bodyState.blog?.title}
                             onChange={(e) => bodyState.blog.title = e.target.value}/>
@@ -157,7 +157,7 @@ export default function BlogView() {
                             confirmText='Are you sure you want to save the title?'/>
                     </div>
                     <div className="edit-traveldates-wrapper">
-                        <label>Travel Dates: </label>
+                        <label className="title-label">Travel Dates: </label>
                         <input className="input-title" type='text'
                             defaultValue={bodyState.blog?.travel_dates}
                             onChange={(e) => bodyState.blog.travel_dates = e.target.value}/>
@@ -165,7 +165,7 @@ export default function BlogView() {
                             buttonText='Save Travel Dates' 
                             confirmText='Are you sure you want to save the travel dates?'/>
                     </div>
-                    <label>{timeAgo(bodyState.blog.last_updated)}</label>
+                    <label className="updated-label">{timeAgo(bodyState.blog.last_updated)}</label>
                     <button className="create-post-button" 
                         onClick={()=>{goTo(`/createpost/?${getIDfromParams()}`)}}>
                         Create Post</button>
@@ -178,15 +178,14 @@ export default function BlogView() {
         return (
             <div className="column-container">
                 <header className="blog-header-container">
-                    <h1>{bodyState.blog?.title}</h1>
-                    <h3>By {bodyState.blog?.author}</h3>
+                    <h1 style={{textAlign:'center'}}>{bodyState.blog?.title}</h1>
+                    <h3 style={{textAlign:'center'}}>By {bodyState.blog?.author}</h3>
                     <div className="blog-time-wrapper">
-                        <h5>{timeAgo(bodyState.blog?.last_updated)}</h5>
+                        <h5 style={{textAlign:'right'}}>{timeAgo(bodyState.blog?.last_updated)}</h5>
                         <h5>-</h5>
-                        <h5>Travel Dates: {bodyState.blog?.travel_dates} </h5>
+                        <h5 style={{textAlign:'left'}}>Travel Dates: {bodyState.blog?.travel_dates} </h5>
                     </div>
-                    </header>
-
+                </header>
                 <article>{bodyState.postArray?.map(postMap)}</article>
             </div>
         )

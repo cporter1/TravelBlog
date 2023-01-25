@@ -107,8 +107,8 @@ export default function Home() {
         return (
             <div className="column-container">
                 <header className="blog-header-container">
-                    <h1>{bodyState.blog?.title}</h1>
-                    <h3>By {bodyState.blog?.author}</h3>
+                    <h1 >{bodyState.blog?.title}</h1>
+                    <h3 style={{textAlign:'center'}}>By {bodyState.blog?.author}</h3>
 
                     <div className="blog-time-wrapper">
                         <h5>{timeAgo(bodyState.blog?.last_updated)}</h5>

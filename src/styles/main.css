@@ -42,7 +42,7 @@ body {
   margin: 0 auto;
   background-image: var(--background-column);
 
-  animation: fadeIn ease-in-out .8s;
+  animation: fadeIn ease-in-out .4s;
   animation-fill-mode: forwards;
 }
 
@@ -137,6 +137,9 @@ body {
   background-image: var(--navbar-img);
   background-position: center;
   background-size: cover;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-bottom: white 2px solid;
   display: flex;
   justify-content: space-around;
   list-style: none;
@@ -173,18 +176,25 @@ body {
     margin-bottom: 2%;
   }
 
+  .updated-label {
+    text-align: center;
+  }
+
+  .title-label {
+    text-align: right;
+    margin-right: 30px;
+  }
+
   .blog-header-container {
     display: flex;
     flex-direction: column;
-    text-align: center;
     margin-top: 2%;
     margin-bottom: 2%;
   }
 
   .blog-time-wrapper {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
   }
 
   .blog-time-wrapper > h5 {
@@ -206,10 +216,11 @@ body {
     margin-right: 30%;
     font-size: x-large;
     display: grid;
-    row-gap: 10px;
+    row-gap: 20%;
     column-gap: 20px;
     grid-template-columns: 2fr 1fr;
     justify-content: center;
+    margin-top: 2%;
     margin-bottom: 2%;
     width: 80%;
   }
@@ -218,29 +229,37 @@ body {
     padding-right: 10%;
     font-size: x-large;
     display: grid;
-    row-gap: 10px;
+    row-gap: 20%;
     column-gap: 20px;
     grid-template-columns: 500px 400px;
     justify-content: center;
+    margin-top: 2%;
     margin-bottom: 2%;
     width: 80%;
   }
 
   .input-post-title {
-    font-size: x-large;
+    padding: 2px 0px;
     text-align: center;
+    font-size: x-large;
   }
 
   .post-title {
-    text-align: center;
     margin-top: 2%;
-    margin-bottom: 2%;
+    text-align: center;
   }
 
   .header-button {
     min-width: 100%;
     font-size: x-large;
     padding: 3px;
+  }
+
+
+  .publish-label {
+    align-items: center;
+    font-size: x-large;
+    text-align: right;
   }
 
   /* Blogs/Posts body CSS */
@@ -366,6 +385,7 @@ body {
 
   .create-post-button {
     margin-top: 2%;
+    padding: 5px 0px;
     align-self: center;
     width: 30%;
   }
@@ -411,11 +431,6 @@ body {
     margin-top: 10px;
     padding: 10px;
     width: 100px;
-  }
-
-  .publish-label, .post-title {
-    font-weight: bold;
-    text-align: right;
   }
 
   /* My Account Page */
@@ -521,4 +536,18 @@ body {
     opacity: 0.8;
     overflow: hidden;
     z-index: 2;
+  }
+
+  /* Mobile Warn */
+
+  .mobile-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .mobile-warning-label {
+    margin-top: 20%;
+    font-size: xx-large;
+    font-weight: bold;
   }

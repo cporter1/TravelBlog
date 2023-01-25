@@ -12,7 +12,7 @@ export default function Navbar() {
         {(email) ? (
             <ul className="navbar-container">
                 <section className="link-container">
-                    <Link href='/'       className='navbar-link-item'>Featured Blog</Link>
+                    <Link href='/'       className='navbar-link-item'>Featured</Link>
                     <Link href='/blogs'  className='navbar-link-item'>All Blogs</Link>
                     <Link href='/myblogs' className='navbar-link-item'  >My Blogs</Link>
                 </section>
