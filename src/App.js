@@ -19,8 +19,7 @@ import './styles/main.css'
 import UserContextProvider from './models/UserContext'
 
 function App() {
-  console.log(useWindowDimensions()['width'])
-  if(useWindowDimensions()['width'] < 1100) {
+  if(useWindowDimensions()['width'] < 1115) {
     return (
       <UserContextProvider>
       <div className='main-container'>

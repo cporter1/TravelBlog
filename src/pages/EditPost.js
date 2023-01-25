@@ -1,16 +1,16 @@
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer} from "react";
 import { getPostByPostID, changePublishPostStatus } from "../api-calls/axios-requests";
 import { getIDfromParams } from "../models/URLparams";
 import { encode } from "base64-arraybuffer"
 import CreateSection from "../components/CreateSection";
 import SavePost from "../components/SavePost";
-import ConfirmPopup from "../components/ConfirmPopup";
 import ParagraphInput from "../components/ParagraphInput";
 
 export default function EditPost() {
 
     const [postState , setPostState] = 
         useReducer(reduceState , {bodyArray: [] , published: false , loading: true , postTitle: ''})
+
     function reduceState(state , action) {
         if(action.initialize)
             return {

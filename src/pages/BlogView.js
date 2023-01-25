@@ -14,7 +14,7 @@ export default function BlogView() {
 
     const {username} = useUserContext()
     const [bodyState , setContent] = 
-        useReducer(reduceFetches , {blog : {} , postArray: [], loading: true})
+        useReducer(reduceFetches , {blog : {} , postArray: [], loading: true, blogOwner: false})
 
     function reduceFetches(state , action) {
             if(action.initialize)
@@ -57,14 +57,16 @@ export default function BlogView() {
     function submitNewTravelDates() {
         saveBlogTravelDates(bodyState.blog.travel_dates , bodyState.blog.id)
     }
-
     function postMap(element , index) {
         return (
             <section className="post" key={element.id}>
                 <header className="post-header">
                     <h3>{element.title} </h3>
                     <h6>Posted {dateHandler(element.time_posted)}</h6>
-                    <h6 style={{margin: '5px 0px'}}>{element.published? 'Public Post' : 'Private Post'}</h6>
+                    {(bodyState.blogOwner)?
+                        <h6 style={{margin: '5px 0px'}}>{element.published? 'Public Post' : 'Private Post'}</h6>
+                        : null
+                    }
                     {bodyState.blogOwner ? 
                         <div className="edit-delete-post-wrapper">
                             <button className="edit-post-button" 

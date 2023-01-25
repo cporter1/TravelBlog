@@ -1,4 +1,3 @@
-import { useState } from "react"
 import Post from "../models/Post"
 
 export default function CreateSection({setPostArray, postArray, index}) {

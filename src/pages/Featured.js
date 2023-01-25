@@ -57,7 +57,7 @@ export default function Home() {
             // image.crossOrigin = 'Anonymous'
             return (
                 <div className="img-wrapper" style={{marginBottom: '2%'}} key={index}>
-                    <img alt='no image' className="uploaded-image"
+                    <img alt='' className="uploaded-image"
                         src={`data:image/*;base64,${encode(element.file.Body.data)}`}/>
                         <div>{element.text}</div>
                 </div>
@@ -96,8 +96,6 @@ export default function Home() {
         }
     }
 
-
-    // if(bodyState.loading) {return <div>loading...</div>;}
     if(bodyState.loading) {
         return  <div className="loading-container">
                     <div className="loader"/>
