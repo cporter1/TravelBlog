@@ -1,30 +1,33 @@
 export default function Post() {
 
-    this.addTextbox = function(stateFunction , array) {
-
-        stateFunction({ 
-            body: [...array, 
+    this.addTextbox = function(stateFunction , array , index) {
+        array.splice(index, 0 ,
                 {
                     type: 'text',
                     text: '',
                     id: Math.random()
-                }],
+                }
+            )
+        stateFunction({ 
+            body: array,
             changeBodyArray: true
         })
     }
 
-    this.addImage = function(file , stateFunction , array) {
+    this.addImage = function(file , stateFunction , array, index) {
         if (file == null) return;
-
+        array.splice(index, 0 ,
+            {   
+                type: 'image',
+                text: '',
+                data: file,
+                url: URL.createObjectURL(file),
+                id: Math.random() 
+            }
+        )
+        console.log(array)
         stateFunction({
-            body: [...array,  
-                {   
-                    type: 'image',
-                    text: '',
-                    data: file,
-                    url: URL.createObjectURL(file),
-                    id: Math.random() 
-                }],
+            body: array,
             changeBodyArray: true
         })
     }

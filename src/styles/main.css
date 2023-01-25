@@ -10,10 +10,10 @@
 #root {
   --base-image: url(../images/base-img.jpg);
   --background-base: rgba(221, 231, 200, 1);
-  --background-column: linear-gradient(to right bottom, rgba(252,253,219, .6), rgba(230,207,133, .1));
-  --background-outdent: rgba(0, 255, 255, .6);
-  --post-section: rgba(0, 255, 255, .6);
-  --navbar-img:  linear-gradient(to right bottom, rgba(0, 150, 255, .7), rgba(0, 255, 255, .5));
+  --background-column: linear-gradient(to right bottom, rgba(252,253,219, .3), rgba(230,207,133, .1));
+  --background-outdent: rgba(0, 255, 255, .7);
+  --post-section: rgba(0, 255, 255, .8);
+  --navbar-img:  linear-gradient(to right bottom, rgba(0, 150, 255, .8), rgba(0, 255, 255, .8));
   --img-wrapper-color: rgba(158, 124, 83);
   /* --body-section-base: rgba(0, 150, 255, .1); */
 
@@ -121,7 +121,9 @@ body {
 
 .signin-input {
   text-align: center;
+  padding: 3px 0px;
   margin: auto 5% 5%;
+  font-size: large;
 }
 
 .signin-button {
@@ -166,6 +168,7 @@ body {
   }
 
   .post-header {
+    padding: 2px 5px 5px;
     text-align: center;
     margin-bottom: 2%;
   }
@@ -200,19 +203,19 @@ body {
   }
 
   .edit-post-header-wrapper {
-    margin-right: 10%;
+    margin-right: 30%;
     font-size: x-large;
     display: grid;
     row-gap: 10px;
     column-gap: 20px;
-    grid-template-columns: 4fr 2fr 1fr;
+    grid-template-columns: 2fr 1fr;
     justify-content: center;
     margin-bottom: 2%;
     width: 80%;
   }
 
   .create-post-header-wrapper {
-    margin-right: 10%;
+    padding-right: 10%;
     font-size: x-large;
     display: grid;
     row-gap: 10px;
@@ -237,6 +240,7 @@ body {
   .header-button {
     min-width: 100%;
     font-size: x-large;
+    padding: 3px;
   }
 
   /* Blogs/Posts body CSS */
@@ -324,6 +328,7 @@ body {
     background-color: var(--img-wrapper-color);
     padding: 20px;
     margin-top: 2%;
+    margin-bottom: 2%;
     border: 2px black solid;
     border-radius: 5px;
   }
@@ -449,10 +454,11 @@ body {
   /* Confirm Popup */
 
   .popup-container {
+    color: #000;
     display: none;
     flex-direction: column;
     position: fixed;
-    background-color: #f37736;
+    background-color: rgba(0, 255, 255, 1);
     width: 230px;
     top: 40%;
     left: 50%;
@@ -460,11 +466,11 @@ body {
     border-radius: 0.3rem;
     padding: 1rem;
     z-index: 5; /* Higher than the z-index of the background */
+    opacity: 1;
   }
   
   .confirmation-text {
     display: flex;
-    color: white;
     margin: 0.5rem 0 2rem;
     text-align: center;
     line-height: 2rem;

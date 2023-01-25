@@ -1,6 +1,7 @@
 import { useState } from "react"
 
-export default function ConfirmPopup({ID, bgID, handleTask , buttonText, buttonClass, confirmText}) {
+export default function ConfirmPopup({ID, bgID, handleTask , buttonText, 
+    buttonClass, confirmText, saving, noTitle}) {
 
     const [delTask , setDelTask] = useState(false)
 
@@ -21,6 +22,14 @@ export default function ConfirmPopup({ID, bgID, handleTask , buttonText, buttonC
         handleConfirmationBox()
     }
 
+    function greenButton() {
+        if(saving) {
+            return ({backgroundColor: 'green'})
+        }
+        else {
+            return null
+        }
+    }
     return (
         <>  
             <button className={buttonClass}
@@ -32,16 +41,24 @@ export default function ConfirmPopup({ID, bgID, handleTask , buttonText, buttonC
                 {confirmText}
                 </div>
                 <div className="button-container">
-                    <button 
-                        className="cancel-button" 
-                        onClick={() => handleConfirmationBox()}>
-                        Cancel
-                    </button>
-                    <button 
-                        className="confirmation-button"
-                        onClick={handleTaskThenClose}>
-                        Yes
-                    </button>
+                    {noTitle?
+                        <>
+                        </>
+                        :
+                        <>
+                            <button 
+                                className="cancel-button" 
+                                onClick={() => handleConfirmationBox()}>
+                                Cancel
+                            </button>
+                            <button 
+                                className="confirmation-button"
+                                style={greenButton()}
+                                onClick={handleTaskThenClose}>
+                                Yes
+                            </button>
+                        </>
+                    }
                 </div>
             </div>
             <div className="popup-bg" id={bgID}

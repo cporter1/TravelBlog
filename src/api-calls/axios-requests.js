@@ -177,3 +177,9 @@ export async function getAllAccounts() {
         .then(async result => {return result.data})
         .catch()
 }
+
+export async function savePostTitle(postID , title) {
+    const data = { title: title , postID: postID }
+    axios.post('/posts/saveposttitle', data)
+        .catch()
+}

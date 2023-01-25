@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Post from "../models/Post"
 
-export default function CreateSection({setPostArray, postArray}) {
+export default function CreateSection({setPostArray, postArray, index}) {
 
     const post = new Post()
 
@@ -12,12 +12,13 @@ export default function CreateSection({setPostArray, postArray}) {
                 accept="image/*" style={{color: 'transparent'}}
                 onChange= { event => {
                     post.addImage(event.target.files[0], 
-                        setPostArray, postArray)
-                }}
+                        setPostArray, postArray, index)
+                    }}
+                alt='submit'
             />
             <button className="add-text-button"
                 onClick={event => {
-                    post.addTextbox(setPostArray, postArray)
+                    post.addTextbox(setPostArray, postArray, index)
                 }}>
                 New Paragraph
             </button>

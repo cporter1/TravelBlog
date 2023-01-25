@@ -64,6 +64,7 @@ export default function BlogView() {
                 <header className="post-header">
                     <h3>{element.title} </h3>
                     <h6>Posted {dateHandler(element.time_posted)}</h6>
+                    <h6 style={{margin: '5px 0px'}}>{element.published? 'Public Post' : 'Private Post'}</h6>
                     {bodyState.blogOwner ? 
                         <div className="edit-delete-post-wrapper">
                             <button className="edit-post-button" 
@@ -126,9 +127,11 @@ export default function BlogView() {
                 <br/>
             )
         else {  
-            return  <p id={index}>
-                        {element}
-                    </p>
+            return(
+                <p id={index}>
+                    {element}
+                </p>
+            )  
         
         }
     }

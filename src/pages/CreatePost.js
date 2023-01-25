@@ -6,14 +6,12 @@ import ParagraphInput from "../components/ParagraphInput";
 
 export default function CreatePost() {
 
-    // TODO: see if you can set text without rerender
-
     // const [postArray, setPostArray]  = useState([]);
-    const postTitle                  = useRef('')
-    const [published , setPublished] = useState(false)
+    // const postTitle                  = useRef('')
+    // const [published , setPublished] = useState(false)
     
     const [postState , setPostState] =
-        useReducer(reduceState , {bodyArray:[] , published: false, postTitle:''})
+        useReducer(reduceState , {bodyArray:[] , published: false, loadeding: true, postTitle:''})
 
     function reduceState(state , action) {
         if(action.changeBodyArray)
@@ -24,10 +22,13 @@ export default function CreatePost() {
             return {...state,
                 published: !state.published
         }
+        else if(action.setTitle)
+            return {...state,
+                postTitle: action.postTitle
+            }
     }
 
     function handleTextChange(value , index) {
-        console.log(value , index)
         let newArray = [...postState.bodyArray]
         let oldElement = {...newArray[index]}
         oldElement.text = value
@@ -43,6 +44,8 @@ export default function CreatePost() {
     function mapArray(element , index) {
         if(element.type === 'image') {
             return (
+                <>
+                <CreateSection postArray={postState.bodyArray} setPostArray={setPostState} index={index}/>
                 <section className="post-section" key={element.id}>
                     <div className="img-wrapper">
                         <img className="uploaded-image" src={element.url} key={index} alt='hi' />
@@ -53,16 +56,20 @@ export default function CreatePost() {
                         onClick={ e => {deleteSection(index)} }>Delete</button>
                     
                 </section>
+                </>
             )
         }
         else if(element.type === 'text') {
             return (
+                <>
+                <CreateSection postArray={postState.bodyArray} setPostArray={setPostState} index={index}/>
                 <section className="post-section" key={element.id}>
                     <ParagraphInput className="post-text" defaultValue={element.text} 
                         index={index} onChange={handleTextChange}/>
                     <button className="delete-section-button" 
                         onClick={event => {deleteSection(index)}}>Delete</button>
                 </section>
+                </>
             )
         }
     }
@@ -74,29 +81,35 @@ export default function CreatePost() {
                 <header className="create-post-header-wrapper">
                     <div className="post-title">Post Title:</div>
                     <input className="input-post-title" 
-                        ref={postTitle}/>
+                        onChange={(event) => setPostState({setTitle: true, postTitle: event.target.value})}/>
 
-                    {published ? 
+                    {postState.published ? 
                         <>
-                            <label className="publish-label">This post WILL be visible to other users</label> 
-                            <button style={{fontSize: 'x-large'}} onClick={() => setPublished(current => !current)}>
+                            <label className="publish-label">
+                                This post WILL be visible to other users</label> 
+                            <button style={{fontSize: 'x-large', padding: '5px'}} 
+                                onClick={() => setPostState({setPublished: true})}>
                                 Make this post private upon save? </button> 
                         </> 
                         : 
                         <>
-                            <label className="publish-label">This post will NOT visible to other users</label>
-                            <button style={{fontSize: 'x-large'}} onClick={() => setPublished(current => !current)}>
+                            <label className="publish-label">
+                                This post will NOT visible to other users</label>
+                            <button style={{fontSize: 'x-large', padding: '5px'}} 
+                                onClick={() => setPostState({setPublished: true})}>
                                 Publish this post upon save?</button> 
                         </>
                     }
                 </header>
+                <div className="hor-divider"/>
                 <div className="section-container">
                     {postState.bodyArray.map(mapArray)}
                 </div>
 
-                <CreateSection postArray={postState.bodyArray} setPostArray={setPostState}/>
+                <CreateSection postArray={postState.bodyArray} setPostArray={setPostState}
+                    index={postState.bodyArray.length}/>
                 <SavePost state={'new'} bodyArray={postState.bodyArray} blogID={getIDfromParams()} 
-                    title={postTitle?.current.value} published={published}/>
+                    title={postState.postTitle} published={postState.published} saving={true}/>
             </div>
         </div>
     )
