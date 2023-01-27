@@ -1,9 +1,8 @@
 import Post from "../models/Post"
+// takes in post arrays and adds picture or textbox
 
 export default function CreateSection({setPostArray, postArray, index}) {
-
     const post = new Post()
-
 
     return (
         <div className="create-section-container"> 

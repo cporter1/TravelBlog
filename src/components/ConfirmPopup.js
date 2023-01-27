@@ -5,6 +5,8 @@ export default function ConfirmPopup({ID, bgID, handleTask , buttonText,
 
     const [delTask , setDelTask] = useState(false)
 
+    // sets invisible html to visible
+    // using ID for uniquenes for multiple on the same page
     const handleConfirmationBox = () => {
         if (!delTask) {
           document.querySelector('#' + ID).style.display = "flex"
@@ -16,7 +18,7 @@ export default function ConfirmPopup({ID, bgID, handleTask , buttonText,
           setDelTask(false)
       }
     }
-    
+    // handler function for form 'yes'
     function handleTaskThenClose() {
         handleTask()
         handleConfirmationBox()
@@ -42,8 +44,7 @@ export default function ConfirmPopup({ID, bgID, handleTask , buttonText,
                 </div>
                 <div className="button-container">
                     {noTitle?
-                        <>
-                        </>
+                        null
                         :
                         <>
                             <button 

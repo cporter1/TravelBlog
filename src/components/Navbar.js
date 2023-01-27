@@ -9,7 +9,7 @@ export default function Navbar() {
 
     return (
         <>
-        {(email) ? (
+        {(email) ? ( // no navbar if user does not exit aka not logged in
             <ul className="navbar-container">
                 <section className="link-container">
                     <Link href='/'       className='navbar-link-item'>Featured</Link>

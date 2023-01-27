@@ -1,6 +1,8 @@
 import { goTo } from "../models/Navigation"
 import { timeAgo } from "../models/TimeFormat";
 
+// banner for blog used in MyBlogs & AllBlogs
+
 export default function BlogBanner({author , lastUpdated , title, id}) {
 
     return (

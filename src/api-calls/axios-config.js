@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+// export axios config oject to be used in axios requests
+
 const app = axios.create({
     withCredentials: true,
     baseURL:

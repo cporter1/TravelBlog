@@ -1,3 +1,5 @@
+// used in app to change url to passed in href
+
 export default function Link({className , href , children}) {
 
     const onClick = (event) => {
