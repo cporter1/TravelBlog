@@ -46,7 +46,7 @@ export default function CreatePost() {
                     <div className="img-wrapper">
                         <img className="uploaded-image" src={element.url} key={index} alt='hi' />
                         <textarea className="edit-image-caption" 
-                            onChange={(event => {handleTextChange(event , index) } )}/>
+                            onChange={(event => {handleTextChange(event.target.value , index) } )}/>
                     </div>
                     <button className="delete-section-button" id='delete-img-section'
                         onClick={ e => {deleteSection(index)} }>Delete</button>

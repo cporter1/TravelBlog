@@ -156,7 +156,8 @@ export default function BlogView() {
                         <ConfirmPopup ID='title' bgID='bgtitle' handleTask={submitNewTitle}
                             buttonClass='new'
                             buttonText='Save Title' 
-                            confirmText='Are you sure you want to save the title?'/>
+                            confirmText='Are you sure you want to save the title?'
+                            saving={true}/>
                     </div>
                     <div className="edit-traveldates-wrapper">
                         <label className="title-label">Travel Dates: </label>
@@ -165,7 +166,8 @@ export default function BlogView() {
                             onChange={(e) => bodyState.blog.travel_dates = e.target.value}/>
                         <ConfirmPopup ID='dates' bgID="bgDates" handleTask={submitNewTravelDates}
                             buttonText='Save Travel Dates' 
-                            confirmText='Are you sure you want to save the travel dates?'/>
+                            confirmText='Are you sure you want to save the travel dates?'
+                            saving={true}/>
                     </div>
                     <label className="updated-label">{timeAgo(bodyState.blog.last_updated)}</label>
                     <button className="create-post-button" 

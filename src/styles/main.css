@@ -29,7 +29,7 @@ body {
 
 .main-container {
   min-height: 100vh;
-  min-width: calc(100vw- 100%);
+  min-width: calc(100vw - 100%);
 }
 
 
