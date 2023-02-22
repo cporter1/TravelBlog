@@ -53,15 +53,10 @@ export default function Home() {
                 </section>
             )
         } else if(element['type'] === 'image') {
-            // let image = new Image;
-            // image.src = 'data:image/*;base64' + encode(element.file.Body.data)
-            // image.crossOrigin = 'Anonymous'
-            const source = "data:image/*;base64," + encode(element.file.Body.data);
             return (
                 <div className="img-wrapper" style={{marginBottom: '2%'}} key={index}>
-                    <img alt='' className="uploaded-image"
-                        src={source}/>
-                        <div>{element.text}</div>
+                    <img alt='not loading' className="uploaded-image" src={element.file}/>
+                    <div>{element.text}</div>
                 </div>
             )
         } else {console.error('function postSectionMap: invalid array')}

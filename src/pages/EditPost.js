@@ -69,7 +69,7 @@ export default function EditPost() {
                         <img className="uploaded-image" src={element.url} key={index} alt='hi' /> 
                         : 
                         <img className="uploaded-image" alt=''
-                            src={`data:image/jpeg;base64, ${encode(element.file.Body.data)}`}/> 
+                            src={element.file}/> 
                     }
                         <textarea className="edit-image-caption" defaultValue={element.text}
                             onChange={(event => { handleTextChange(event.target.value , index) } )}/>

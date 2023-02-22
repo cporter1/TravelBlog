@@ -32,9 +32,11 @@ export default function BlogView() {
 
     useEffect(() => {
         if(bodyState.blog.author) return;
+        console.log('url params:' , getIDfromParams())
         Promise.all([ getPostsByBlogID( getIDfromParams() ) ,
             getBlogByBlogID( getIDfromParams() ) ])
             .then(async result => {
+                console.log(result)
                 setContent({blog: result[1] , 
                     posts: (result[0] ? result[0] : []) , initialize: true });      
             })
@@ -99,7 +101,7 @@ export default function BlogView() {
             return (
                 <section className="img-wrapper" style={{marginBottom: '2%'}} key={index}>
                     <img alt='' className="uploaded-image"
-                        src={`data:image/jpeg;base64, ${encode(element.file.Body.data)}`}/>
+                        src={element.file}/>
                         <div className="edit-image-caption">{element.text}</div>
                 </section>
             )
