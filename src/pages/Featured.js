@@ -21,6 +21,7 @@ export default function Home() {
     useEffect(() => {
         getFeaturedBlogAndPosts()
             .then(async result => {
+                console.log(result);
                 setContent({blog: result[0] , posts: result[1]})
             })
     },[])
@@ -55,10 +56,11 @@ export default function Home() {
             // let image = new Image;
             // image.src = 'data:image/*;base64' + encode(element.file.Body.data)
             // image.crossOrigin = 'Anonymous'
+            const source = "data:image/*;base64," + encode(element.file.Body.data);
             return (
                 <div className="img-wrapper" style={{marginBottom: '2%'}} key={index}>
                     <img alt='' className="uploaded-image"
-                        src={`data:image/*;base64,${encode(element.file.Body.data)}`}/>
+                        src={source}/>
                         <div>{element.text}</div>
                 </div>
             )

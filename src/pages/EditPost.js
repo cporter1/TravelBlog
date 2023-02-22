@@ -117,16 +117,16 @@ export default function EditPost() {
                                     <button onClick={() => {changePublishPostStatus(getIDfromParams())
                                         setPostState({setPublished: true})}}
                                         className='header-button'>
-                                        Make this post private?</button> 
+                                        Make private?</button> 
                                 </> 
                                 : 
                                 <>
                                     <label className="publish-label">
-                                        This post is NOT visible to other users</label>
+                                        This post is NOT visible to others</label>
                                     <button onClick={() => {changePublishPostStatus(getIDfromParams());
                                         setPostState({setPublished: true})}}
                                         className='header-button'>
-                                        Publish this post?</button> 
+                                        Make Public?</button> 
                                 </>
                             }
                         </header>

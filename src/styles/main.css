@@ -10,7 +10,7 @@
 #root {
   --base-image: url(../images/base-img.jpg);
   --background-base: rgba(221, 231, 200, 1);
-  --background-column: linear-gradient(to right bottom, rgba(252,253,219, .3), rgba(230,207,133, .1));
+  --background-column: linear-gradient(to right bottom, rgba(252,253,219, .9), rgba(230,207,133, .2));
   --background-outdent: rgba(0, 255, 255, .7);
   --post-section: rgba(0, 255, 255, .8);
   --navbar-img:  linear-gradient(to right bottom, rgba(0, 150, 255, .8), rgba(0, 255, 255, .8));
@@ -38,7 +38,7 @@ body {
   display: flex;
   align-items: center;
   min-height: calc(100vh - 108px);
-  width: 1100px;
+  width: 860px;
   margin: 0 auto;
   background-image: var(--background-column);
 
@@ -176,6 +176,10 @@ body {
     margin-bottom: 2%;
   }
 
+  .post-header > h6 {
+    font-size:small;
+  }
+
   .updated-label {
     text-align: center;
   }
@@ -213,11 +217,10 @@ body {
   }
 
   .edit-post-header-wrapper {
-    margin-right: 30%;
+    margin-right: 8%;
     font-size: x-large;
     display: grid;
     row-gap: 20%;
-    column-gap: 20px;
     grid-template-columns: 2fr 1fr;
     justify-content: center;
     margin-top: 2%;
@@ -279,7 +282,7 @@ body {
 
   .post {
     display: grid;
-    grid-template-columns: 250px 850px;
+    grid-template-columns: 200px 660px;
     margin: 0px 0px 50px 0px;
     padding: 2% 0 2% 0;
     border-radius: 10px;
@@ -288,16 +291,21 @@ body {
 
   .blog-banner {
     display: grid;
-    grid-template-rows: 3fr 1fr 1fr;
-    padding: 10px;
+    grid-template-rows: 2fr 1fr 1fr;
+    padding: 20px 10px;
     text-align: center;
     background-color: var(--post-section);
     border-radius: 10px;
-    border: solid 2px rgba(0,00,0, 1);
+    border: solid 2px rgba(0,0,0,1);
     cursor: pointer;
   }
 
   .blog-banner > h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .blog-banner > h6 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -308,7 +316,7 @@ body {
     display: grid;
     column-gap: 20px;
     row-gap: 20px;
-    grid-template-columns: 250px 250px 250px 250px;
+    grid-template-columns: 267px 267px 267px; 
     grid-template-rows: 1fr 1fr 1fr;
   }
 
