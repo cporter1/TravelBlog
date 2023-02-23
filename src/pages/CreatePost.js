@@ -7,7 +7,7 @@ import ParagraphInput from "../components/ParagraphInput";
 export default function CreatePost() {
 
     const [postState , setPostState] =
-        useReducer(reduceState , {bodyArray:[] , published: false, postTitle:''})
+        useReducer(reduceState , {bodyArray:[] , published: false, postTitle:'', loading: false})
 
     function reduceState(state , action) {
         if(action.changeBodyArray)
@@ -21,6 +21,10 @@ export default function CreatePost() {
         else if(action.setTitle)
             return {...state,
                 postTitle: action.postTitle
+            }
+        else if(action.setLoading) 
+            return {...state,
+                loading: !state.loading
             }
     }
 
@@ -69,6 +73,11 @@ export default function CreatePost() {
             )
         }
     }
+    if(postState.loading) {
+        return  <div className="loading-container">
+                    <div className="loader"/>
+                </div>
+    }
 
     return (
         <div className="column-container">
@@ -104,7 +113,8 @@ export default function CreatePost() {
                 <CreateSection postArray={postState.bodyArray} setPostArray={setPostState}
                     index={postState.bodyArray.length}/>
                 <SavePost state={'new'} bodyArray={postState.bodyArray} blogID={getIDfromParams()} 
-                    title={postState.postTitle} published={postState.published} saving={true}/>
+                    title={postState.postTitle} published={postState.published} saving={true}
+                    pageStateFunction={setPostState}/>
             </div>
         </div>
     )

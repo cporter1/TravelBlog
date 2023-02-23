@@ -5,7 +5,8 @@ import {goTo} from '../models/Navigation.js'
 import ConfirmPopup from './ConfirmPopup.js'
 
 
-export default function SavePost({bodyArray , blogID , title , state , postID, published, saving}) {
+export default function SavePost({bodyArray , blogID , title , state , postID, published, saving, 
+    pageStateFunction}) {
 
     const {username} = useUserContext()
 
@@ -20,7 +21,7 @@ export default function SavePost({bodyArray , blogID , title , state , postID, p
             savePostFormData(post.encodePostArray(bodyArray) , postID)
         }
 
-        // TODO: go to loading page
+        pageStateFunction({setLoading:true})
         setTimeout( () => goTo(`/blogs`) , 3000)
     }
     if(!title || title.trim() === '') {

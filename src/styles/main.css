@@ -94,7 +94,7 @@ body {
   align-items:center;
   text-align: center;
   height: 100vh;
-  width: 1100px;
+  width: 888px;
   margin: 0 auto;
   background-color: var(--background-column);
 }
@@ -217,7 +217,7 @@ body {
   }
 
   .edit-post-header-wrapper {
-    margin-right: 8%;
+    margin-right: 10%;
     font-size: x-large;
     display: grid;
     row-gap: 20%;
@@ -260,6 +260,7 @@ body {
 
 
   .publish-label {
+    margin-right:5px;
     align-items: center;
     font-size: x-large;
     text-align: right;

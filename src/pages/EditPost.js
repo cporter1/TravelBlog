@@ -31,6 +31,10 @@ export default function EditPost() {
             return {...state,
                 postTitle: action.postTitle
             }
+        else if(action.setLoading)
+            return {...state,
+                loading: !state.loading
+            }
     }
 
     useEffect(() => {
@@ -137,7 +141,7 @@ export default function EditPost() {
                         <CreateSection postArray={postState.bodyArray} setPostArray={setPostState} 
                             index={postState.bodyArray.length}/>
                         <SavePost state={'update'} bodyArray={postState.bodyArray} postID={getIDfromParams()} 
-                                title={postState.postTitle} saving={true}/>
+                                title={postState.postTitle} saving={true} pageStateFunction={setPostState}/>
                     </div>
                 </div>
             )

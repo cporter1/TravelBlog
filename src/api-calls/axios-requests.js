@@ -173,8 +173,7 @@ export async function deletePost(postID) {
             if(result.status === 200) {
                 return true
             }
-            else 
-                return false
+            else return false;
         }) 
         .catch(error => console.error(error))
 }
