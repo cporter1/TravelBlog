@@ -5,14 +5,16 @@ import { useUserContext } from "../models/UserContext"
 export default function CreateBlog() {
 
     const titleRef = useRef()
-
-    const {username} = useUserContext()
+    const usernameRef = useRef()
 
     return (
         <div>
             <label>Title: </label>
             <input type='text' ref={titleRef}/>
-            <button onClick={() => {createBlog(titleRef.current.value , username )}}>
+            <label>User: </label>
+            <input type='text' ref={usernameRef}/>
+
+            <button onClick={() => {createBlog(titleRef.current.value , usernameRef.current.value )}}>
                 Create Blog</button>
         </div>
     )
