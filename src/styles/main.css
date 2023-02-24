@@ -199,9 +199,10 @@ body {
   .blog-time-wrapper {
     display: flex;
     justify-content: center;
+    text-align: 'center'
   }
 
-  .blog-time-wrapper > h5 {
+  .blog-time-wrapper > h6 {
     margin: 5px;
   }
 
@@ -455,6 +456,15 @@ body {
     padding: 40px;
     border-radius: 10px;
     border: 2px black solid;
+  }
+  
+  .acc-info-label {
+    font-weight: bold;
+    text-align: right;
+  }
+
+  .acc-info-item {
+    text-align: left;
   }
 
   .featured-grid {

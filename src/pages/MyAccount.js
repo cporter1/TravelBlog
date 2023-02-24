@@ -42,8 +42,10 @@ export default function MyAccount() {
     function AccountInfo({username , email}) {
         return (
             <section className="acc-info-wrapper">
-                <span>Username: </span> <span> {username}</span>
-                <span>email:</span> <span> {email}</span>
+                <span className="acc-info-label">Username:</span> 
+                <span className="acc-info-item"> {username}</span>
+                <span className="acc-info-label">email:</span> 
+                <span className="acc-info-item"> {email}</span>
             </section>
         )
     }

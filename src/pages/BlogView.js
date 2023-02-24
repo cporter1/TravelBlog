@@ -187,9 +187,9 @@ export default function BlogView() {
                     <h1 style={{textAlign:'center'}}>{bodyState.blog?.title}</h1>
                     <h3 style={{textAlign:'center'}}>By {bodyState.blog?.author}</h3>
                     <div className="blog-time-wrapper">
-                        <h5 style={{textAlign:'right'}}>{timeAgo(bodyState.blog?.last_updated)}</h5>
-                        <h5>-</h5>
-                        <h5 style={{textAlign:'left'}}>Travel Dates: {bodyState.blog?.travel_dates} </h5>
+                        <h6 style={{textAlign:'right'}}>{timeAgo(bodyState.blog?.last_updated)}</h6>
+                        <h6></h6>
+                        <h6 style={{textAlign:'left'}}>Travel Dates: {bodyState.blog?.travel_dates} </h6>
                     </div>
                 </header>
                 <article>{bodyState.postArray?.map(postMap)}</article>

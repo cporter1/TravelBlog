@@ -106,9 +106,9 @@ export default function Home() {
                     <h3 style={{textAlign:'center'}}>By {bodyState.blog?.author}</h3>
 
                     <div className="blog-time-wrapper">
-                        <h5>{timeAgo(bodyState.blog?.last_updated)}</h5>
-                        <h5>-</h5>
-                        <h5>Travel Dates: {bodyState.blog?.travel_dates} </h5>
+                        <h6>{timeAgo(bodyState.blog?.last_updated)}</h6>
+                        <h6></h6>
+                        <h6>Travel Dates: {bodyState.blog?.travel_dates} </h6>
                     </div>
                 </header>
 
