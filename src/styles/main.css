@@ -10,10 +10,10 @@
 #root {
   --base-image: url(../images/base-img.jpg);
   --background-base: rgba(221, 231, 200, 1);
-  --background-column: linear-gradient(to right bottom, rgba(252,253,219, .9), rgba(230,207,133, .2));
+  --background-column: linear-gradient(to right bottom, rgba(252,253,219, .3), rgba(230,207,133, .2));
   --background-outdent: rgba(0, 255, 255, .7);
   --post-section: rgba(0, 255, 255, .8);
-  --navbar-img:  linear-gradient(to right bottom, rgba(0, 150, 255, .8), rgba(0, 255, 255, .8));
+  --navbar-img:  linear-gradient(to right bottom, rgba(0, 150, 255, .9), rgba(0, 255, 255, .9));
   --img-wrapper-color: rgba(158, 124, 83);
   /* --body-section-base: rgba(0, 150, 255, .1); */
 
