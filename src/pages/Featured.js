@@ -21,7 +21,6 @@ export default function Home() {
     useEffect(() => {
         getFeaturedBlogAndPosts()
             .then(async result => {
-                console.log(result);
                 setContent({blog: result[0] , posts: result[1]})
             })
     },[])

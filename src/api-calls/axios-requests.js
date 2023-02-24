@@ -161,7 +161,7 @@ export async function featureBlog(blogID) {
 export async function getFeaturedBlogAndPosts() {
     return (
         axios.get('/posts/getfeaturedblog')
-            .then(async result => { console.log(result.data[1]); return result.data})
+            .then(async result => {return result.data})
             .catch(error => console.error(error))
     )
 }
