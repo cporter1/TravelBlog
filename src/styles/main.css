@@ -560,13 +560,14 @@ body {
   /* Mobile Warn */
 
   .mobile-container {
+    font-size: small;
     display: flex;
     align-items: center;
     flex-direction: column;
   }
 
   .mobile-warning-label {
-    margin-top: 20%;
-    font-size: xx-large;
+    margin-top: 10%;
+    font-size: large;
     font-weight: bold;
   }
