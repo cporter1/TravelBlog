@@ -1,6 +1,9 @@
-# Welcome to my travelblog!
+# Welcome to my travelblog (Frontend)!
 
-This is the frontend part written with react.
+There are more features in development including:
+post comments
+mobile view
+google maps location
 
 ## api-calls: 
 includes axios config & api requests
