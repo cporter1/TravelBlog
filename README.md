@@ -6,17 +6,20 @@ post comments
 mobile view
 google maps location
 
-## api-calls: 
+
+## Folder Structure
+
+### api-calls: 
 includes axios config & api requests
-## components
+### components
 includes all React components used in pages
-## images:
+### images:
 background image
-## models
+### models
 includes tools and hooks
-## pages
+### pages
 all the views
-## styles
+### styles
 css
 
 ## app.js 
