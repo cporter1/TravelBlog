@@ -9,22 +9,23 @@ google maps location
 
 ## Folder Structure
 
-### api-calls: 
+### src
+#### api-calls: 
 includes axios config & api requests
-### components
+#### components
 includes all React components used in pages
-### images:
+#### images:
 background image
-### models
+#### models
 includes tools and hooks
-### pages
+#### pages
 all the views
-### styles
+#### styles
 css
 
-## app.js 
+#### app.js 
 includes all routes
-## index.js
+#### index.js
 entry point
 
 env variables:
