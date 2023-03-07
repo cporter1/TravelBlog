@@ -1,5 +1,6 @@
 # Welcome to my travelblog (Frontend)!
 
+## More to come!
 There are more features in development including:
 post comments
 mobile view
