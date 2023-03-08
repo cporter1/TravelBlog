@@ -2,7 +2,6 @@ import { useEffect, useReducer} from "react"
 import { getFeaturedBlogAndPosts} from "../api-calls/axios-requests"
 import { goTo } from "../models/Navigation"
 import { dateHandler } from "../models/TimeFormat"
-import { encode } from "base64-arraybuffer"
 import { timeAgo } from "../models/TimeFormat"
 
 export default function Home() {
@@ -101,12 +100,13 @@ export default function Home() {
         return (
             <div className="column-container">
                 <header className="blog-header-container">
-                    <h1 style={{textAlign:'center'}}>{bodyState.blog?.title}</h1>
-                    <h3 style={{textAlign:'center'}}>By {bodyState.blog?.author}</h3>
+                    <h2>{bodyState.blog?.title}</h2>
 
                     <div className="blog-time-wrapper">
+                        <h6>By {bodyState.blog?.author}</h6>
+                        <h6>•</h6>
                         <h6>{timeAgo(bodyState.blog?.last_updated)}</h6>
-                        <h6></h6>
+                        <h6>•</h6>
                         <h6>Travel Dates: {bodyState.blog?.travel_dates} </h6>
                     </div>
                 </header>

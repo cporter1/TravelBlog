@@ -32,11 +32,9 @@ export default function BlogView() {
 
     useEffect(() => {
         if(bodyState.blog.author) return;
-        console.log('url params:' , getIDfromParams())
         Promise.all([ getPostsByBlogID( getIDfromParams() ) ,
             getBlogByBlogID( getIDfromParams() ) ])
             .then(async result => {
-                console.log(result)
                 setContent({blog: result[1] , 
                     posts: (result[0] ? result[0] : []) , initialize: true });      
             })
@@ -184,15 +182,19 @@ export default function BlogView() {
         return (
             <div className="column-container">
                 <header className="blog-header-container">
-                    <h1 style={{textAlign:'center'}}>{bodyState.blog?.title}</h1>
-                    <h3 style={{textAlign:'center'}}>By {bodyState.blog?.author}</h3>
+                    <h2>{bodyState.blog?.title}</h2>
+
                     <div className="blog-time-wrapper">
-                        <h6 style={{textAlign:'right'}}>{timeAgo(bodyState.blog?.last_updated)}</h6>
-                        <h6></h6>
-                        <h6 style={{textAlign:'left'}}>Travel Dates: {bodyState.blog?.travel_dates} </h6>
+                        <h6>By {bodyState.blog?.author}</h6>
+                        <h6>•</h6>
+                        <h6>{timeAgo(bodyState.blog?.last_updated)}</h6>
+                        <h6>•</h6>
+                        <h6>Travel Dates: {bodyState.blog?.travel_dates} </h6>
                     </div>
                 </header>
-                <article>{bodyState.postArray?.map(postMap)}</article>
+                <article>
+                    {bodyState.postArray?.map(postMap)}
+                </article>
             </div>
         )
     }

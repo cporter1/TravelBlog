@@ -21,9 +21,26 @@ export default function MyBlogs() {
     useEffect(() => {
         getMyBlogs(username)
             .then(async result => {
-                if(result) setBlogsState({blogsArray: result});
+                if(result) setBlogsState({blogsArray: moveEmptyBlogsToBack(result)});
             })
     },[])
+    
+    function moveEmptyBlogsToBack(blogArray) {
+        let i = 0;
+        let j = 0;
+
+        while(i < blogArray.length) {
+            console.log(blogArray[i].last_updated)
+            if(blogArray[i].last_updated === null) {
+                j++
+            }
+
+            i++
+        }
+        blogArray.splice(0,j).map((element) => {blogArray.push(element)} )
+        return blogArray;
+    }
+
     if(blogsState.loading) {
         return (
             <div className="loading-container">
@@ -34,7 +51,6 @@ export default function MyBlogs() {
         return (
             <div className="column-container">
                 <h1 className="title-header">My Blogs</h1>
-                <hr className="hor-divider"/>
                 <div className="blogs-wrapper">
                     {blogsState.blogsArray.map((element , index) => {
                         return (

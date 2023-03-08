@@ -2,9 +2,7 @@
 
 ## More to come!
 There are more features in development including:
-post comments
-mobile view
-google maps location
+post comments, mobile view, and google maps location
 
 
 ## Folder Structure

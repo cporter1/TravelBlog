@@ -18,10 +18,27 @@ export default function AllBlogs() {
         getAllBlogs()
             .then(async result => {
                 if(result != null) {
-                    setBlogsState({blogsArray: result})
+                    console.log(result)
+                    setBlogsState({blogsArray: moveEmptyBlogsToBack(result)})
                 }
             })
     },[])
+
+    function moveEmptyBlogsToBack(blogArray) {
+        let i = 0;
+        let j = 0;
+
+        while(i < blogArray.length) {
+            console.log(blogArray[i].last_updated)
+            if(blogArray[i].last_updated === null) {
+                j++
+            }
+
+            i++
+        }
+        blogArray.splice(0,j).map((element) => {blogArray.push(element)} )
+        return blogArray;
+    };
 
     if(blogsState.loading) {
         return (
@@ -33,7 +50,7 @@ export default function AllBlogs() {
         return (
             <div className="column-container">
                 <h1 className="title-header">All Blogs</h1>
-                <hr className="hor-divider"/>
+                {/* <hr className="hor-divider"/> */}
                 <div className="blogs-wrapper">
                     {blogsState.blogsArray.map((element , index) => {
                         return (
