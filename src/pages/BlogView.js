@@ -5,7 +5,6 @@ import { getPostsByBlogID , getBlogByBlogID ,
 import { getIDfromParams } from "../models/URLparams.js"
 import { goTo } from "../models/Navigation"
 import { dateHandler } from "../models/TimeFormat"
-import { encode } from "base64-arraybuffer"
 import { useUserContext } from "../models/UserContext"
 import { timeAgo } from "../models/TimeFormat"
 import ConfirmPopup from "../components/ConfirmPopup"
