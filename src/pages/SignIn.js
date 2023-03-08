@@ -22,7 +22,7 @@ export default function SignIn() {
     return (
         <div className="signin-container">
             <section className="signin-outdent">
-                <h2 className="signin-header">Welcome to the Porter Travel Blog!</h2>
+                <h2 className="signin-header">Welcome to the Adventure Blog!</h2>
 
                 <label className="signin-label">Email:</label>
                 <input className="signin-input" ref={emailRef}/>

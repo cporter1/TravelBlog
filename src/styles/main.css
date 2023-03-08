@@ -171,11 +171,16 @@ body {
   .post-header {
     padding: 2px 5px 5px;
     text-align: center;
+    margin-left: 10px;
     margin-bottom: 2%;
   }
 
   .post-header > h6 {
     font-size:small;
+  }
+
+  .post-header > h3 {
+    margin-bottom: 10px;
   }
 
   .updated-label {
@@ -283,7 +288,7 @@ body {
 
   .post {
     display: grid;
-    grid-template-columns: 200px 660px;
+    grid-template-columns: 230px 630px;
     margin: 0px 0px 50px 0px;
     padding: 2% 0 2% 0;
     border-radius: 10px;
