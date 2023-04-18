@@ -158,7 +158,7 @@ export async function featureBlog(blogID) {
         .catch(error => console.error(error))
 }
 
-export async function getFeaturedBlogAndPosts() {
+export async function getFeaturedBlog() {
     return (
         axios.get('/posts/getfeaturedblog')
             .then(async result => {return result.data})
@@ -188,4 +188,20 @@ export async function savePostTitle(postID , title) {
     const data = { title: title , postID: postID }
     axios.post('/posts/saveposttitle', data)
         .catch(error => console.error(error))
+}
+
+export async function createComment(body, postParent, blogID) {
+  const data = {body: body, createdAt: Date.now(), post_parent: postParent, blog_id: blogID}
+  axios.post('/posts/createcomment', data)
+    .catch(error => {console.error(error)})
+}
+
+export async function deleteComment(ID) {
+  axios.post('posts/deletecomment' , {ID: ID})
+    .catch(error => console.error(error))
+}
+
+export async function updateComment(ID , body) {
+  axios.post('posts/updatecomment', {ID: ID, body: body})
+    .catch(error => console.error(error))
 }

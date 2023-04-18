@@ -7,9 +7,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 document.body.style= 'background: rgb(231,186,123)'
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <App/>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 

@@ -1,7 +1,6 @@
 import { useEffect, useReducer} from "react";
 import { getPostByPostID, changePublishPostStatus } from "../api-calls/axios-requests";
 import { getIDfromParams } from "../models/URLparams";
-import { encode } from "base64-arraybuffer"
 import CreateSection from "../components/CreateSection";
 import SavePost from "../components/SavePost";
 import ParagraphInput from "../components/ParagraphInput";
@@ -92,7 +91,7 @@ export default function EditPost() {
                 <section className="post-section" key={element.id}>
                     <ParagraphInput className="post-text" defaultValue={element.text} 
                         index={index} 
-                        onChange={(value) => {console.log('onchnage');handleTextChange(value,index)}}/>
+                        onChange={(value) => { handleTextChange(value,index) }}/>
                     <button className="delete-section-button"
                         onClick={() => {deleteSection(index)}}>Delete</button>
                 </section>

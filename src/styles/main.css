@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family:Arial, Helvetica, sans-serif
 }
  html {
   overflow-y:scroll;
@@ -11,10 +12,10 @@
   --base-image: url(../images/base-img.jpg);
   --background-base: rgba(221, 231, 200, 1);
   --background-column: linear-gradient(to right bottom, rgba(252,253,219, .3), rgba(230,207,133, .2));
-  --background-outdent: rgba(0, 255, 255, .7);
-  --post-section: rgba(0, 255, 255, .8);
-  --navbar-img:  linear-gradient(to right bottom, rgba(0, 150, 255, .9), rgba(0, 255, 255, .9));
-  --img-wrapper-color: rgba(158, 124, 83);
+  --background-outdent: rgba(0, 255, 255, 1);
+  --post-section: rgba(0, 255, 255, 1);
+  --navbar-img:  linear-gradient(to right bottom, rgba(0, 150, 255, 1), rgba(0, 255, 255, 1));
+  --img-wrapper-color: rgb(182, 151, 115);
   /* --body-section-base: rgba(0, 150, 255, .1); */
 
   background-image: var(--base-image);
@@ -24,8 +25,7 @@
 
 body {
   color: #000;
-  font-size:x-large;
-  font-weight: bold;
+  font-size: x-large;
 }
 
 .main-container {
@@ -114,6 +114,7 @@ body {
 .signin-header {
   margin-top: 10px;
   margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .signin-label {
@@ -166,6 +167,11 @@ body {
   .title-header {
     margin-top: 2%;
     margin-bottom: 2%;
+    padding: .7rem;
+    background-color: var(--img-wrapper-color);
+    width: 98%;
+    border-radius: .7rem;
+    text-align: center;
   }
 
   .post-header {
@@ -198,6 +204,10 @@ body {
     align-items: center;
     margin-top: 2%;
     margin-bottom: 2%;
+    background-color: var(--img-wrapper-color);
+    border-radius: .7rem;
+    padding: 1rem;
+    width: 100%;
   }
 
   .blog-time-wrapper {
@@ -287,12 +297,16 @@ body {
   }
 
   .post {
+    background-color: var(--post-section);
+    margin: 0px 0px 50px 0px;
+    border-radius: 1rem;
+  }
+
+  .post-grid {
     display: grid;
     grid-template-columns: 230px 630px;
-    margin: 0px 0px 50px 0px;
     padding: 2% 0 2% 0;
     border-radius: 10px;
-    background-color: var(--post-section);
   }
 
   .blog-banner {
@@ -434,11 +448,6 @@ body {
     padding: 10px;
   }
 
-  .ql-container {
-    font-size: large;
-    background-color: white;
-  }
-
   .delete-section-button {
     margin-top: 10px;
     padding: 10px;
@@ -485,6 +494,190 @@ body {
   #delete-img-section {
     border-radius: 5px;
     margin-left: 95px;
+  }
+  
+  /* Comments */
+
+  .comments-container {
+    width: 100%;
+    display: grid;
+    background-color: rgb(0, 213, 255);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+
+  .posts-tabs-bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .post-tab {
+    background-color: var(--background-outdent);
+    border: none;
+    width: 17%;
+    justify-self: flex-end;
+    justify-content: center;
+    font-size: 1rem;
+    padding: .5rem 0;
+    margin-bottom: 1rem;
+    margin-left: 5%;
+    cursor: pointer;
+    border-bottom-right-radius: .8rem;
+    border-bottom-left-radius: .8rem;
+  }
+
+  .comment-input-wrapper {
+    margin-top: 4%;
+  }
+
+  .comments-wrapper {
+    display: none;
+    margin-left: .5rem;
+    margin-right: 1rem;
+  }
+
+  .comment {
+    margin: .5rem .3rem;
+  }
+
+  .comment-main {
+    display: flex;
+  }
+
+  .comment-header {
+    display: flex;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+  }
+
+  .change-comment-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    width: 72%;
+    margin-left: auto;
+  }
+
+  .edit-comment, .delete-comment, .save-comment, .cancel-edit-comment {
+    font-size: .9rem;
+    width: 4rem;
+    text-align: center;
+    border: .2rem;
+    padding: .1rem .5rem;
+    margin-right: 1rem;
+    background-color: rgb(112, 248, 248);
+    cursor: pointer;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+  }
+
+  .quill {
+    width: 100%;
+  }
+
+  .ql-container.ql-snow {
+    border-radius: .8rem;
+    border: none;
+    background-color: white;
+  }
+
+  .ql-container {
+    font-size: large;
+    background-color: white;
+  }
+
+  .ql-editor > p {
+    background-color: white;
+  }
+
+  .ql-editor > p, .comment-body > p {
+    font-size: 1.3rem;
+    height: 30px;
+    width: 500px;
+    padding: 0;
+  }
+
+  .ql.editor {
+    background-color: white;
+  }
+
+  .comment-body > p {
+    display: flex;
+    align-items: center;
+    /* background-color: #cc0000; */
+  }
+
+  .comment-author {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .comment-date {
+    font-size: .8rem;
+    text-align: center;
+  }
+
+  .comment-body {
+    background-color: rgba(0, 255, 255, 1);
+  }
+
+  .comment-body, .comment-editor, .ql-editor  {
+    font-size: 1.28rem;
+    /* margin-left: .5rem; */
+    padding: .4rem .4rem .4rem .8rem;
+    border-radius: .8rem;
+    width: 100%;
+  }
+
+  .comment-editor {
+    display: none;
+    border: none;
+    padding: 0;
+    background-color: white;
+  }
+
+  .new-comment {
+    margin-left: auto;
+    font-size: 1.2rem;
+    width: 76%;
+    padding: 0rem .3rem .4rem .8rem;
+    border-radius: .8rem;
+  }
+
+  .new-comment-button {
+    display: flex;
+    border-radius: .7rem;
+    padding: .5rem;
+    margin: .5rem .3rem 1rem auto;
+    font-size: 1rem;
+    border-top: none;
+    border-left: none;
+    cursor: pointer;
+  }
+
+  .save-comment-wrapper {
+    display: none;
+    /* background-color: #cc0000; */
+    justify-content: flex-start;
+    width: 72%;
+    margin-left: auto;
+  }
+
+  .save-comment {
+    background-color: rgb(0, 255, 110);
+  }
+
+  .cancel-edit-comment {
+    background-color: #b2b2b2;
+  }
+
+  /* Maps Section */
+
+  .maps-wrapper {
+    display: none;
+    text-align: center;
   }
 
   /* Confirm Popup */

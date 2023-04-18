@@ -57,34 +57,36 @@ export default function BlogView() {
         saveBlogTravelDates(bodyState.blog.travel_dates , bodyState.blog.id)
     }
     function postMap(element , index) {
-        return (
-            <section className="post" key={element.id}>
-                <header className="post-header">
-                    <h3>{element.title} </h3>
-                    <h6>Posted {dateHandler(element.time_posted)}</h6>
-                    {(bodyState.blogOwner)?
-                        <h6 style={{margin: '5px 0px'}}>{element.published? 'Public Post' : 'Private Post'}</h6>
-                        : null
-                    }
-                    {bodyState.blogOwner ? 
-                        <div className="edit-delete-post-wrapper">
-                            <button className="edit-post-button" 
-                                onClick={() => goTo(`/editpost/?${element.id}`)}>
-                                Edit Post</button> 
-                            <ConfirmPopup ID='deletePost' bgID='pgDeletePost' 
-                                buttonClass='delete-post-button' 
-                                buttonText='Delete Post' 
-                                handleTask={() => handleDeletePost(element.id , index)}
-                                confirmText='Are you sure you want to delete this post?'
-                                />
-                        </div>
-                    : null}
-                </header>
-                <section className="body-section">
-                        {element.body_array?.map(bodyMap)}
-                    </section>
+      return (
+        <section className="post" key={element.id}>
+          <div className="post-grid">
+            <header className="post-header">
+              <h3>{element.title} </h3>
+              <h6>Posted {dateHandler(element.time_posted)}</h6>
+              {(bodyState.blogOwner)?
+                  <h6 style={{margin: '5px 0px'}}>{element.published? 'Public Post' : 'Private Post'}</h6>
+                  : null
+              }
+              {bodyState.blogOwner ? 
+                <div className="edit-delete-post-wrapper">
+                  <button className="edit-post-button" 
+                      onClick={() => goTo(`/editpost/?${element.id}`)}>
+                      Edit Post</button> 
+                  <ConfirmPopup ID='deletePost' bgID='pgDeletePost' 
+                      buttonClass='delete-post-button' 
+                      buttonText='Delete Post' 
+                      handleTask={() => handleDeletePost(element.id , index)}
+                      confirmText='Are you sure you want to delete this post?'
+                      />
+                </div>
+              : null}
+            </header>
+            <section className="body-section">
+                {element.body_array?.map(bodyMap)}
             </section>
-        )
+            </div>
+          </section>
+      )
 
     }
     function bodyMap(element , index) {
@@ -173,7 +175,9 @@ export default function BlogView() {
                         onClick={()=>{goTo(`/createpost/?${getIDfromParams()}`)}}>
                         Create Post</button>
                 </header>
-                {bodyState.postArray?.map(postMap)}
+                <article>
+                    {bodyState.postArray?.map(postMap)}
+                </article>
             </div>
         )
     }
@@ -194,6 +198,7 @@ export default function BlogView() {
                 <article>
                     {bodyState.postArray?.map(postMap)}
                 </article>
+
             </div>
         )
     }

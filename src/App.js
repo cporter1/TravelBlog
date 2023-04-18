@@ -43,7 +43,7 @@ function App() {
           <Route path='/blogs/'        component = {<BlogView/>}   />
           <Route path='/createaccount' component = {<CreateAccount/>} />
           <Route path='/editpost/'     component = {<EditPost/>}   />
-          <Route notSignedIn={true} component = {<SignIn  />} />
+          <Route notSignedIn={true}    component = {<SignIn  />} />
         </div>
       </UserContextProvider>
     );

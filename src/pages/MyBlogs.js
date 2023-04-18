@@ -30,11 +30,9 @@ export default function MyBlogs() {
         let j = 0;
 
         while(i < blogArray.length) {
-            console.log(blogArray[i].last_updated)
             if(blogArray[i].last_updated === null) {
                 j++
             }
-
             i++
         }
         blogArray.splice(0,j).map((element) => {blogArray.push(element)} )
