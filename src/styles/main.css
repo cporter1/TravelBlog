@@ -675,7 +675,7 @@ body {
 
   /* Maps Section */
 
-  .maps-wrapper {
+  .maps-container {
     display: none;
     text-align: center;
   }

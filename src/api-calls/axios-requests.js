@@ -93,6 +93,7 @@ export async function getBlogByBlogID(blogID) {
             params: {blogID: blogID}
         })
             .then(async result => {
+              console.log('getBlogbyBlogID ' + result.data[0].toString())
                 return result.data[0]
             })
             .catch(error => console.error(error))
@@ -105,6 +106,7 @@ export async function getPostsByBlogID(blogID) {
             params: {id: blogID}
         })
             .then(async result => {
+              console.log(result.data)
                 return result.data
             })
             .catch(error => console.error(error))
@@ -204,4 +206,11 @@ export async function deleteComment(ID) {
 export async function updateComment(ID , body) {
   axios.post('posts/updatecomment', {ID: ID, body: body})
     .catch(error => console.error(error))
+}
+
+export async function getCommentsByBlogID(blogID) {
+  const data = 
+    await axios.get('posts/getcommentsbyblogid', { params: {blogID : blogID} } )
+  console.log('getCommentsByBlogID ' + data)
+  return data.data
 }

@@ -84,6 +84,55 @@ export default function Home() {
       })
   },[])
 
+  function mapComments(element, commentIndex) {
+    const index = this.postIndex + '-' + commentIndex
+    return (
+      <div className="comment" key={element.id}>
+        <div className="comment-main">
+          <div className="comment-header">
+              <span className="comment-author">{element.author}</span>
+              <span className="comment-date">{timeAgo(element.created_at)}</span>
+          </div>
+          <div className="comment-body" id={'comment-body-' + index}>
+            {paragraphsToArray(element.body).map(paragraphMap)}
+          </div>
+          <div className="comment-editor" id= {'comment-editor-wrapper' + index}>
+            <ParagraphInput id={'edit-comment'+index} commentIndex={commentIndex} postIndex={this.postIndex}
+              onChange={changeCommentDraft} value={bodyState.posts[this.postIndex].comments[commentIndex].commentDraft}/> 
+          </div>
+        </div>
+        {sessionStorage.getItem('username') === element.author ? 
+          <>
+            <div className="change-comment-wrapper" id={'change-comment-wrapper-' + index}>
+              <button className="edit-comment" onClick={() => {editComment(index)}}>
+                edit
+              </button>
+              <ConfirmPopup ID={'deleteComment' + index} bgID={'pgDeleteComment'+ index} 
+                buttonClass='delete-comment' 
+                buttonText='delete'
+                handleTask={() => {handleDeleteComment(element.id, this.postIndex, commentIndex)}}
+                confirmText='Are you sure you want to delete this comment?'
+              />
+            </div>
+            {/* {console.log(element)} */}
+            <div className="save-comment-wrapper" id={'save-comment-wrapper-' + index}>
+              <ConfirmPopup ID={'saveComment' + index} bgID={'paSaveComment'+ index} 
+                buttonClass='save-comment' 
+                buttonText='save' 
+                saving={true}
+                handleTask={()=> {handleCommentUpdate(element.id, element.commentDraft, this.postIndex, commentIndex); }}
+                confirmText='Are you sure you want to save this comment?'
+              />
+              <button className="cancel-edit-comment" onClick={() => {cancelEditComment(this.postIndex, commentIndex)}}>
+                cancel
+              </button>
+            </div>
+          </>
+        : null}
+      </div>
+    )
+  }
+
   function postsWithComments(commentsArray , postsArray) {
     let postsCopy = [...postsArray];
     let commentsCopy = [...commentsArray];
@@ -180,55 +229,6 @@ export default function Home() {
     setContent({postIndex: postIndex, commentIndex: commentIndex, deleteComment: true})
   }
 
-  function mapComments(element, commentIndex) {
-    const index = this.postIndex + '-' + commentIndex
-    return (
-      <div className="comment" key={element.id}>
-        <div className="comment-main">
-          <div className="comment-header">
-              <span className="comment-author">{element.author}</span>
-              <span className="comment-date">{timeAgo(element.created_at)}</span>
-          </div>
-          <div className="comment-body" id={'comment-body-' + index}>
-            {paragraphsToArray(element.body).map(paragraphMap)}
-          </div>
-          <div className="comment-editor" id= {'comment-editor-wrapper' + index}>
-            <ParagraphInput id={'edit-comment'+index} commentIndex={commentIndex} postIndex={this.postIndex}
-              onChange={changeCommentDraft} value={bodyState.posts[this.postIndex].comments[commentIndex].commentDraft}/> 
-          </div>
-        </div>
-        {sessionStorage.getItem('username') === element.author ? 
-          <>
-            <div className="change-comment-wrapper" id={'change-comment-wrapper-' + index}>
-              <button className="edit-comment" onClick={() => {editComment(index)}}>
-                edit
-              </button>
-              <ConfirmPopup ID={'deleteComment' + index} bgID={'pgDeleteComment'+ index} 
-                buttonClass='delete-comment' 
-                buttonText='delete'
-                handleTask={() => {handleDeleteComment(element.id, this.postIndex, commentIndex)}}
-                confirmText='Are you sure you want to delete this comment?'
-              />
-            </div>
-            {/* {console.log(element)} */}
-            <div className="save-comment-wrapper" id={'save-comment-wrapper-' + index}>
-              <ConfirmPopup ID={'saveComment' + index} bgID={'paSaveComment'+ index} 
-                buttonClass='save-comment' 
-                buttonText='save' 
-                saving={true}
-                handleTask={()=> {handleCommentUpdate(element.id, element.commentDraft, this.postIndex, commentIndex); }}
-                confirmText='Are you sure you want to save this comment?'
-              />
-              <button className="cancel-edit-comment" onClick={() => {cancelEditComment(this.postIndex, commentIndex)}}>
-                cancel
-              </button>
-            </div>
-          </>
-        : null}
-      </div>
-    )
-  }
-
   function postMap(element , postIndex) {
     return (
     <section className="post" key={element.id}>
@@ -268,7 +268,7 @@ export default function Home() {
               </button>
           </div>
         </div>
-        <div className="maps-wrapper" id={'maps-section-' + postIndex} >
+        <div className="maps-container" id={'maps-section-' + postIndex} >
           MAPS
         </div>
       </div>
